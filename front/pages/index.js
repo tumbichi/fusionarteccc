@@ -2,10 +2,18 @@
 import ToolbarLayout from '../containers/toolbar-layout';
 import Toolbar from '../components/Toolbar';
 
-export default function Home() {
+const HomePage = () => {
+  const router = useRouter();
+
+  const goToCourse = (course) => {
+    router.push(`/cursos/${course}`);
+  };
+
   return (
     <>
       <ToolbarLayout />
     </>
   );
-}
+};
+
+export default HomePage;

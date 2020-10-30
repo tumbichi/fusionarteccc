@@ -1,3 +1,4 @@
-export default function Curso() {
+const CursoPage = () => {
   return <>CURSO X</>;
-}
+};
+export default CursoPage;
