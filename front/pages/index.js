@@ -2,6 +2,7 @@
 import { useRouter } from 'next/router';
 import ToolbarLayout from '../containers/toolbar-layout';
 import Toolbar from '../components/Toolbar';
+import { useRouter } from 'next/router';
 
 const HomePage = () => {
   const router = useRouter();
