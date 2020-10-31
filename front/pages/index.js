@@ -1,6 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import ToolbarLayout from '../containers/toolbar-layout';
 import Toolbar from '../components/Toolbar';
+import { useRouter } from 'next/router';
 
 const HomePage = () => {
   const router = useRouter();
