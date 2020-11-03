@@ -1,3 +1,5 @@
+/* eslint-disable react/react-in-jsx-scope */
+
 import '../styles/tailwind.css';
 
 const MyApp = ({ Component, pageProps }) => {
