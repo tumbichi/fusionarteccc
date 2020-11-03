@@ -1,12 +1,14 @@
 module.exports = {
-  future: {
-    // removeDeprecatedGapUtilities: true,
-    // purgeLayersByDefault: true,
-  },
-  purge: [],
   theme: {
-    extend: {},
+    fontFamily: {},
+    extend: {
+      colors: {
+        green: {
+          primary: '#3B937B',
+        },
+      },
+    },
   },
   variants: {},
   plugins: [],
-}
+};
