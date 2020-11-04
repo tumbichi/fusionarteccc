@@ -1,15 +1,23 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { persistStore, persistReducer } from 'redux-persist';
-
+import { createStore, combineReducers , applyMiddleware } from 'redux';
+import curso from './reducers/curso.reducer';
 import thunk from 'redux-thunk';
 
+const reducer = combineReducers(curso);
+
+const store = createStore(reducer, applyMiddleware(thunk));
+
+export default store;
+/* import { persistStore, persistReducer } from 'redux-persist';
+ */
+/* import thunk from 'redux-thunk';
+ */
 /* const persistConfig = {
   key: 'root',
   storage,
   blacklist: ['drawerCollapse', 'onPagePost'],
 };
 
-const reducers = combineReducers({
+const reducers = combineRedSucers({
   user: persistReducer(persistConfig, user),
   post,
   config: persistReducer(persistConfig, config),
