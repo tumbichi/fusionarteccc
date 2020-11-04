@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import SeeMoreCoursesContainer from '../containers/see-more-courses-layout';
+import ListPurchasedCoursesContainer from '../containers/list-purchased-courses-layout';
 /* eslint-disable react/react-in-jsx-scope */
 
 const MisCursosPage = () => {
@@ -17,7 +19,10 @@ const MisCursosPage = () => {
         <title>Mis cursos</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      MIS CURSOS
+
+      <SeeMoreCoursesContainer/>
+      <ListPurchasedCoursesContainer/>
+
     </>
   );
 };
