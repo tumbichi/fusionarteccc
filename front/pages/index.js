@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import ToolbarLayout from '../containers/toolbar-layout';
 import BannerContainer from '../containers/banner-layout';
 import ListCoursesContainer from '../containers/list-courses-layout';
@@ -9,6 +9,7 @@ import AboutUsContainer from '../containers/about-us-layput';
 const HomePage = () => {
   const router = useRouter();
 
+  // eslint-disable-next-line no-unused-vars
   const goToCourse = (course) => {
     router.push(`/cursos/${course}`);
   };
@@ -21,13 +22,12 @@ const HomePage = () => {
       </Head>
       <ToolbarLayout />
 
-      <BannerContainer/>
+      <BannerContainer />
       <ListCoursesContainer category="FUSIONADITOS KIDS" />
       <ListCoursesContainer category="FUSIONARTE JOVENES" />
       <ListCoursesContainer category="FUSIONARTE ADULTOS" />
-      <AboutUsContainer/>
-
-   </>
+      <AboutUsContainer />
+    </>
   );
 };
 

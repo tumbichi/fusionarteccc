@@ -7,3 +7,5 @@ export const FIREBASE_CONFIG = {
   messagingSenderId: '1050593986323',
   appId: '1:1050593986323:web:f32d547277cbe975ad7ce6',
 };
+
+export const url = 'https://fusion-arte-ccc.firebaseio.com';
