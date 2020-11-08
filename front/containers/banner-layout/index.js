@@ -1,13 +1,13 @@
 import React from 'react';
-import {} from './styles';
+import { FlexContainer as Container } from '../../layouts';
 import Banner from '../../components/Banner';
 
 const BannerLayout = () => {
   return (
-    <>
+    <Container>
       <div>banner container</div>
-      <Banner/>
-    </>
+      <Banner />
+    </Container>
   );
 };
 

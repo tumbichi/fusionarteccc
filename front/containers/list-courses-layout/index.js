@@ -1,5 +1,5 @@
 import React from 'react';
-import {} from './styles';
+import { FlexContainer as Container } from '../../layouts';
 import CourseCard from '../../components/CourseCard';
 
 const ListCoursesLayout = ({ category }) => {
@@ -12,11 +12,11 @@ const ListCoursesLayout = ({ category }) => {
   };
 
   return (
-    <>
+    <Container>
       <div>ListCoursesLayout</div>
       <div>{category}</div>
       <div>{courseList()}</div>
-    </>
+    </Container>
   );
 };
 

@@ -10,13 +10,10 @@ export const saveLogin = (user) => {
   };
 };
 
-export const setErrorLogin = (code, message) => {
+export const setErrorLogin = (error) => {
   return {
     type: TYPE_SET_ERROR,
-    payload: {
-      code,
-      message,
-    },
+    payload: error,
   };
 };
 

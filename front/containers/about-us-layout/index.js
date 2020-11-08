@@ -1,9 +1,13 @@
 import React from 'react';
-import {} from './styles';
+import { FlexContainer as Container } from '../../layouts';
 import AboutUs from '../../components/AboutUs'
 
 const AboutUsLayout = () => {
-  return <AboutUs/>;
+  return (
+    <Container>
+      <AboutUs/>
+    </Container>
+  );
 };
 
 export default AboutUsLayout;

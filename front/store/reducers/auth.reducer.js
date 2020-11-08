@@ -1,3 +1,5 @@
+import { TYPE_SAVE_LOGIN, TYPE_SET_ERROR } from '../actions';
+
 const initialState = {
   id: 0,
   nombre: 'El pity',
@@ -7,12 +9,21 @@ const initialState = {
   rol: 0,
   fechaCreacion: '07/10/1997',
   fotoPerfil: null,
-  loginError: false,
-  loginErrorMessage: '',
+  loginError: null,
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
+    case TYPE_SAVE_LOGIN:
+      return {
+        ...state,
+        ...payload,
+      };
+    case TYPE_SET_ERROR:
+      return {
+        ...state,
+        loginError: payload,
+      };
     default:
       return {
         ...state,

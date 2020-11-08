@@ -2,9 +2,11 @@
 import React from 'react';
 import PropTypes, { string } from 'prop-types';
 
-const InputText = ({ name, value, placeholder, iconLeft, iconRight, errorText, type, onChange }) => {
+const InputText = ({ name, value, placeholder, iconLeft, iconRight, errorText, type, onChange, onFocus }) => {
   // eslint-disable-next-line no-unused-vars
-  return <input name={name} type={type} value={value} placeholder={placeholder} onChange={onChange}/>;
+  return (
+    <input name={name} type={type} value={value} placeholder={placeholder} onChange={onChange} onFocus={onFocus} />
+  );
 };
 
 InputText.defaultProps = {
@@ -16,6 +18,7 @@ InputText.defaultProps = {
   errorText: '',
   type: 'text',
   onChange: () => {},
+  onFocus: () => {},
 };
 
 InputText.propTypes = {
@@ -27,6 +30,8 @@ InputText.propTypes = {
   errorText: PropTypes.string,
   type: PropTypes.string,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+
 };
 
 export default InputText;
