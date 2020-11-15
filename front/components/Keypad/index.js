@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { KeypadWrapper } from './styles';
 
 const Keypad = ({ children }) => {
-  return <div>{children}</div>;
+  return <KeypadWrapper>{children}</KeypadWrapper>;
 };
 Keypad.defaultProps = {
   children: <></>,
