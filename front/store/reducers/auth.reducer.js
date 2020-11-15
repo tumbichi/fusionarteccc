@@ -17,7 +17,9 @@ export default (state = initialState, { type, payload }) => {
     case TYPE_SAVE_LOGIN:
       return {
         ...state,
-        ...payload,
+        user: {
+          ...payload,
+        },
       };
     case TYPE_SET_ERROR:
       return {
@@ -25,8 +27,6 @@ export default (state = initialState, { type, payload }) => {
         loginError: payload,
       };
     default:
-      return {
-        ...state,
-      };
+      return state;
   }
 };

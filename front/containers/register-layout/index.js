@@ -43,27 +43,41 @@ const RegisterLayout = () => {
 
   const handleErrors = ({ email, password, password2, nombre, apellido, fechaNacimiento }) => {
     if (!email) {
-      return 'email error';
+      return 'Ingrese un email';
     }
     if (!password) {
-      return 'password error';
+      return 'Ingrese contraseña';
     }
     if (!password2) {
-      return 'password2 error';
+      return 'Ingrese contraseña';
     }
     if (password !== password2) {
-      return 'password error';
+      return 'Las contraseñas no coinciden';
+    }
+    if (password.length < 6) {
+      return 'Contraseña demasiado corta (mas de 6 caracteres)';
+    }
+    if (password.length > 20) {
+      return 'Contraseña demasiado larga (menos de 20 caracteres)';
     }
     if (!nombre) {
-      return 'nombre';
+      return 'Ingrese nombre';
+    }
+    if (nombre.length < 2) {
+      return 'ingrese nombre valido';
     }
     if (!apellido) {
-      return 'apellido error';
+      return 'Ingrese apellido';
+    }
+    if (apellido.length < 3) {
+      return 'Ingrese apellido valido';
     }
     if (!fechaNacimiento) {
-      return 'fechaNaciemiento error';
+      return 'Ingrese fecha de nacimiento';
     }
-
+    if (!fechaNacimiento /* datejs */) {
+      return 'Ingrese fecha de nacimiento valida';
+    }
     return '';
   };
 
