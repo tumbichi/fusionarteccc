@@ -3,9 +3,9 @@ module.exports = {
     fontFamily: {},
     extend: {
       colors: {
-        green: {
-          primary: '#3B937B',
-        },
+        primary: '#3B937B',
+        secondary: '#fafafa',
+        acent: '#238D70',
       },
     },
   },

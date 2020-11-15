@@ -1,25 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Wrapper } from './styles';
+import { Wrapper, IconContainer } from './styles';
 
 // eslint-disable-next-line no-unused-vars
-const Button = ({ height, width, text, color, onClick }) => {
-  return <Wrapper onClick={onClick}>{text}</Wrapper>;
+const Button = ({ size, text, color, onClick, leftIcon }) => {
+  return (
+    <Wrapper color={color} onClick={onClick}>
+      {leftIcon && <IconContainer>{leftIcon}</IconContainer>}
+      {text}
+    </Wrapper>
+  );
 };
 
 Button.defaultProps = {
-  height: 'auto',
-  width: 'auto',
-  text: 'click',
+  size: 0,
+  text: '',
   color: 'primary',
+  leftIcon: null,
   onClick: () => {},
 };
 
 Button.propTypes = {
-  height: PropTypes.string,
-  width: PropTypes.string,
+  size: PropTypes.oneOf([0, 1, 2]),
   text: PropTypes.string,
-  color: PropTypes.oneOf(['primary', 'secondary', 'accent']),
+  color: PropTypes.oneOf(['primary', 'secondary']),
+  leftIcon: PropTypes.node,
   onClick: PropTypes.func,
 };
 

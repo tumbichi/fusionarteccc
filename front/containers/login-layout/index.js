@@ -7,7 +7,7 @@ import Button from '../../components/Button';
 import InputText from '../../components/InputText';
 /* import { login } from '../../services/auth'; */
 import { requestLogin, setErrorLogin } from '../../store/actions';
-import { FlexContainer as Container } from '../../layouts';
+import { FlexContainer as Container, FormContainer } from '../../layouts';
 import { AUTH_ERRORS } from '../../constants/';
 
 // eslint-disable-next-line no-unused-vars
@@ -64,17 +64,19 @@ const LoginLayout = ({ goToMisCursos }) => {
 
   return (
     <Container>
-      <InputText name="email" placeholder="Email" value={inputEmail} onChange={handleChange} onFocus={handleFocus} />
-      <InputText
-        name="password"
-        type="password"
-        value={inputPassword}
-        placeholder="Contraseña"
-        onChange={handleChange}
-        onFocus={handleFocus}
-      />
-      {loginError ? <div>{getMessageError(loginError.code)}</div> : <div>{'-'}</div>}
-      <Button text="Iniciar sesion" onClick={handleLogin} />
+      <FormContainer>
+        <InputText name="email" placeholder="Email" value={inputEmail} onChange={handleChange} onFocus={handleFocus} />
+        <InputText
+          name="password"
+          type="password"
+          value={inputPassword}
+          placeholder="Contraseña"
+          onChange={handleChange}
+          onFocus={handleFocus}
+        />
+        {loginError ? <div>{getMessageError(loginError.code)}</div> : <div>{'-'}</div>}
+        <Button text="Iniciar sesion" color="secondary" onClick={handleLogin} />
+      </FormContainer>
     </Container>
   );
 };
