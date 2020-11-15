@@ -6,7 +6,7 @@ export const IconContainer = styled.div.attrs({
   className: 'mx-1',
 })``;
 
-export const Wrapper = ({ children, color, size }) => {
+export const Wrapper = ({ children, color, size, onClick }) => {
   let bg;
   let bgHover;
   let text;
@@ -29,6 +29,7 @@ export const Wrapper = ({ children, color, size }) => {
        focus:shadow-2xl focus:outline-none 
        hover:bg-${bgHover} bg-${bg} hover:text-${textHover} text-${text} 
        rounded-full  md:tracking-wide font-semibold `}
+      onClick={onClick}
     >
       {children}
     </button>
