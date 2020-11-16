@@ -1,15 +1,26 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import Toolbar from '../../components/Toolbar';
 import Keypad from '../../components/Keypad';
 import Button from '../../components/Button';
 
 const ToolbarLayout = () => {
+  const router = useRouter();
+
+  const goToHome = () => {
+    router.push(`/`);
+  };
+  const goToLogIn = () => {
+    router.push(`/auth/login`);
+  };
+
   return (
     <Toolbar
+      goToHome={goToHome}
       right={
         <Keypad>
-          <Button text="HOME" />
-          <Button text="INICIAR SESIÓN" />
+          <Button text="HOME" onClick={goToHome} />
+          <Button text="INICIAR SESIÓN" onClick={goToLogIn} />
           <Button
             leftIcon={
               <svg
