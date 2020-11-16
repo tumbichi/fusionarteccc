@@ -1,39 +1,50 @@
 import React, { useCallback, useState } from 'react';
 import { registerUser } from '../../services';
-import { FlexContainer as Container } from '../../layouts';
+import { FlexContainer as Container, FormContainer, FlexRowContainer as FlexRow } from '../../layouts';
 import InputText from '../../components/InputText';
 import Button from '../../components/Button';
 
 const RegisterLayout = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
-  const [nombre, setNombre] = useState('');
-  const [apellido, setApellido] = useState('');
-  const [fechaNacimiento, setFechaNacimiento] = useState('');
-
+  const [email, setEmail] = useState({ value: '', error: '' });
+  const [password, setPassword] = useState({ value: '', error: '' });
+  const [password2, setPassword2] = useState({ value: '', error: '' });
+  const [nombre, setNombre] = useState({ value: '', error: '' });
+  const [apellido, setApellido] = useState({ value: '', error: '' });
+  const [fechaNacimiento, setFechaNacimiento] = useState({ value: '', error: '' });
   const handleInputTextChange = useCallback(
     ({ target }) => {
       const { name, value } = target;
       // eslint-disable-next-line default-case
       switch (name) {
         case 'email':
-          setEmail(value);
+          setEmail((prevState) => {
+            return { ...prevState, value, error: '' };
+          });
           return;
         case 'password':
-          setPassword(value);
+          setPassword((prevState) => {
+            return { ...prevState, value, error: '' };
+          });
           return;
         case 'password2':
-          setPassword2(value);
+          setPassword2((prevState) => {
+            return { ...prevState, value, error: '' };
+          });
           return;
         case 'nombre':
-          setNombre(value);
+          setNombre((prevState) => {
+            return { ...prevState, value, error: '' };
+          });
           return;
         case 'apellido':
-          setApellido(value);
+          setApellido((prevState) => {
+            return { ...prevState, value, error: '' };
+          });
           return;
         case 'fechaNacimiento':
-          setFechaNacimiento(value);
+          setFechaNacimiento((prevState) => {
+            return { ...prevState, value, error: '' };
+          });
           // eslint-disable-next-line no-useless-return
           return;
       }
@@ -41,44 +52,76 @@ const RegisterLayout = () => {
     [setEmail, setPassword, setPassword2, setNombre, setApellido, setFechaNacimiento]
   );
 
+  // eslint-disable-next-line no-shadow
   const handleErrors = ({ email, password, password2, nombre, apellido, fechaNacimiento }) => {
-    if (!email) {
-      return 'Ingrese un email';
+    let isAnError = false;
+    if (!email.value) {
+      setEmail((prevState) => {
+        return { ...prevState, error: 'Ingrese un email' };
+      });
+      isAnError = isAnError || true;
     }
-    if (!password) {
-      return 'Ingrese contraseña';
+    if (!password2.value) {
+      setPassword2((prevState) => {
+        return { ...prevState, error: 'Ingrese contraseña' };
+      });
+      isAnError = isAnError || true;
     }
-    if (!password2) {
-      return 'Ingrese contraseña';
+    if (password.value !== password2.value) {
+      setPassword((prevState) => {
+        return { ...prevState, error: 'Las contraseñas no coinciden' };
+      });
+      isAnError = isAnError || true;
     }
-    if (password !== password2) {
-      return 'Las contraseñas no coinciden';
+    if (password.value.length < 6) {
+      setPassword((prevState) => {
+        return { ...prevState, error: 'Contraseña demasiado corta (mas de 6 caracteres)' };
+      });
+      isAnError = isAnError || true;
     }
-    if (password.length < 6) {
-      return 'Contraseña demasiado corta (mas de 6 caracteres)';
+    if (password.value.length > 20) {
+      setPassword((prevState) => {
+        return { ...prevState, error: 'Contraseña demasiado larga (menos de 20 caracteres)' };
+      });
+      isAnError = isAnError || true;
     }
-    if (password.length > 20) {
-      return 'Contraseña demasiado larga (menos de 20 caracteres)';
+    if (!password.value) {
+      setPassword((prevState) => {
+        return { ...prevState, error: 'Ingrese contraseña' };
+      });
+      isAnError = isAnError || true;
     }
-    if (!nombre) {
-      return 'Ingrese nombre';
+    if (!nombre.value) {
+      setNombre((prevState) => {
+        return { ...prevState, error: 'Ingrese nombre' };
+      });
+      isAnError = isAnError || true;
     }
     if (nombre.length < 2) {
-      return 'ingrese nombre valido';
+      setNombre((prevState) => {
+        return { ...prevState, error: 'ingrese nombre valido' };
+      });
+      isAnError = isAnError || true;
     }
-    if (!apellido) {
-      return 'Ingrese apellido';
+    if (!apellido.value) {
+      setApellido((prevState) => {
+        return { ...prevState, error: 'Ingrese apellido' };
+      });
+      isAnError = isAnError || true;
     }
-    if (apellido.length < 3) {
-      return 'Ingrese apellido valido';
+    if (apellido.value.length < 3) {
+      setApellido((prevState) => {
+        return { ...prevState, error: 'Ingrese apellido valido' };
+      });
+      isAnError = isAnError || true;
     }
-    if (!fechaNacimiento) {
-      return 'Ingrese fecha de nacimiento';
+    if (!fechaNacimiento.value /* datejs */) {
+      setFechaNacimiento((prevState) => {
+        return { ...prevState, error: 'Ingrese fecha de nacimiento valida' };
+      });
+      isAnError = isAnError || true;
     }
-    if (!fechaNacimiento /* datejs */) {
-      return 'Ingrese fecha de nacimiento valida';
-    }
-    return '';
+    return isAnError;
   };
 
   const handleRegister = useCallback(() => {
@@ -106,31 +149,60 @@ const RegisterLayout = () => {
 
   return (
     <Container>
-      <InputText type="email" name="email" placeholder="Email" value={email} onChange={handleInputTextChange} />
-      <InputText
-        type="password"
-        name="password"
-        placeholder="Contraseña"
-        value={password}
-        onChange={handleInputTextChange}
-      />
-      <InputText
-        type="password"
-        name="password2"
-        placeholder="Confirme contraseña"
-        value={password2}
-        onChange={handleInputTextChange}
-      />
-      <InputText name="nombre" placeholder="Nombre" value={nombre} onChange={handleInputTextChange} />
-      <InputText name="apellido" placeholder="Apellido" value={apellido} onChange={handleInputTextChange} />
-      <InputText
-        type="date"
-        name="fechaNacimiento"
-        placeholder="Fecha de nacimiento"
-        value={fechaNacimiento}
-        onChange={handleInputTextChange}
-      />
-      <Button text="Registrate" onClick={handleRegister} />
+      <FormContainer>
+        <FlexRow>
+          <InputText
+            name="nombre"
+            placeholder="Nombre"
+            value={nombre.value}
+            onChange={handleInputTextChange}
+            errorText={nombre.error}
+          />
+          <InputText
+            name="apellido"
+            placeholder="Apellido"
+            value={apellido.value}
+            onChange={handleInputTextChange}
+            errorText={apellido.error}
+          />
+        </FlexRow>
+        {console.log('ERROR EMAIL', email.error)}
+        <InputText
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={email.value}
+          onChange={handleInputTextChange}
+          errorText={email.error}
+        />
+        <FlexRow>
+          <InputText
+            type="password"
+            name="password"
+            placeholder="Contraseña"
+            value={password.value}
+            onChange={handleInputTextChange}
+            errorText={password.error}
+          />
+          <InputText
+            type="password"
+            name="password2"
+            placeholder="Confirme contraseña"
+            value={password2.value}
+            onChange={handleInputTextChange}
+            errorText={password2.error}
+          />
+        </FlexRow>
+        <InputText
+          type="date"
+          name="fechaNacimiento"
+          placeholder="Fecha de nacimiento"
+          value={fechaNacimiento.value}
+          onChange={handleInputTextChange}
+          errorText={fechaNacimiento.error}
+        />
+        <Button text="Registrate" color="secondary" onClick={handleRegister} />
+      </FormContainer>
     </Container>
   );
 };
