@@ -8,7 +8,7 @@ import InputText from '../../components/InputText';
 /* import { login } from '../../services/auth'; */
 import { requestLogin, setErrorLogin } from '../../store/actions';
 import { FlexContainer as Container, FormContainer } from '../../layouts';
-import { AUTH_ERRORS } from '../../constants/';
+import { AUTH_ERRORS } from '../../constants';
 
 // eslint-disable-next-line no-unused-vars
 const LoginLayout = ({ goToMisCursos }) => {

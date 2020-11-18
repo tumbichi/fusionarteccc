@@ -104,7 +104,6 @@ const HomePage = () => {
           break;
       }
     });
-
     document.addEventListener(
       'mousewheel',
       (e) => {
@@ -113,14 +112,15 @@ const HomePage = () => {
       { passive: false }
     );
     return () => {
-      document.body.removeEventListener('wheel');
-      window.removeEventListener('scroll');
+      document.body.removeEventListener('wheel', checkScrollDirection);
+      window.removeEventListener('scroll', {});
+      document.removeEventListener('keydown', {});
     };
   }, []);
 
   // eslint-disable-next-line no-unused-vars
   const goToCourse = (course) => {
-    router.push(`/cursos/${course}`);
+    router.push(`/curso/${course}`);
   };
 
   return (
@@ -138,13 +138,13 @@ const HomePage = () => {
           <BannerContainer />
         </Element>
         <Element className="section-dos" name="section3">
-          <ListCoursesContainer category="FUSIONADITOS KIDS" />
+          <ListCoursesContainer category="FUSIONADITOS KIDS" goToCourse={goToCourse} />
         </Element>
         <Element className="section-tres" name="section4">
-          <ListCoursesContainer category="FUSIONARTE JOVENES" />
+          <ListCoursesContainer category="FUSIONARTE JOVENES" goToCourse={goToCourse} />
         </Element>
         <Element className="section-cuatro" name="section5">
-          <ListCoursesContainer category="FUSIONARTE ADULTOS" />
+          <ListCoursesContainer category="FUSIONARTE ADULTOS" goToCourse={goToCourse} />
         </Element>
         <Element className="section-cinco" name="section6">
           <AboutUsContainer />
