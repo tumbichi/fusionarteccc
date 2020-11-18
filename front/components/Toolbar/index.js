@@ -5,7 +5,7 @@ import { ToolbarWrapper, ImageWrapper as Logo } from './styles';
 const Toolbar = ({ right, goToHome }) => {
   return (
     <ToolbarWrapper>
-      <Logo onClick={goToHome} />
+      <Logo src="../../static/images/logo.png" onClick={goToHome}/>
       {right}
     </ToolbarWrapper>
   );
