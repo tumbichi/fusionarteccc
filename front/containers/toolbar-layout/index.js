@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Toolbar from '../../components/Toolbar';
 import Keypad from '../../components/Keypad';
 import Button from '../../components/Button';
+import ModalComponent from '../../components/Modal';
 
 const ToolbarLayout = () => {
   const router = useRouter();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const goToHome = () => {
     router.push(`/`);
@@ -13,7 +15,14 @@ const ToolbarLayout = () => {
   const goToLogIn = () => {
     router.push(`/auth/login`);
   };
-
+  const openModal = () => {
+    console.log(modalIsOpen);
+    setModalIsOpen(true);
+  };
+  const closeModal = () => {
+    setModalIsOpen(false);
+    console.log(modalIsOpen);
+  };
   return (
     <Toolbar
       goToHome={goToHome}
@@ -22,6 +31,7 @@ const ToolbarLayout = () => {
           <Button text="HOME" onClick={goToHome} />
           <Button text="INICIAR SESIÓN" onClick={goToLogIn} />
           <Button
+            onClick={openModal}
             leftIcon={
               <svg
                 className="h-6 md:h-8"
@@ -39,6 +49,7 @@ const ToolbarLayout = () => {
               </svg>
             }
           />
+          <ModalComponent isOpen={modalIsOpen} closeModal={closeModal} />
         </Keypad>
       }
     />
