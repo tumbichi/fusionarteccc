@@ -138,13 +138,13 @@ const HomePage = () => {
           <BannerContainer />
         </Element>
         <Element className="section-dos" name="section3">
-          <ListCoursesContainer category="FUSIONADITOS KIDS" goToCourse={goToCourse} />
+          <ListCoursesContainer category="FUSIONADITOS KIDS" bgImage="kids" goToCourse={goToCourse} />
         </Element>
         <Element className="section-tres" name="section4">
-          <ListCoursesContainer category="FUSIONARTE JOVENES" goToCourse={goToCourse} />
+          <ListCoursesContainer category="FUSIONARTE JOVENES" bgImage="jovenes" goToCourse={goToCourse} />
         </Element>
         <Element className="section-cuatro" name="section5">
-          <ListCoursesContainer category="FUSIONARTE ADULTOS" goToCourse={goToCourse} />
+          <ListCoursesContainer category="FUSIONARTE ADULTOS" bgImage="adultos" goToCourse={goToCourse} />
         </Element>
         <Element className="section-cinco" name="section6">
           <AboutUsContainer />
