@@ -30,32 +30,30 @@ export const Flex1Container = styled.div`
 export const Layout = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  max-height: 100vh;
 
   .section-uno {
     flex: 1;
     height: 100vh;
-    background-color: '#fafafa';
   }
 
   .section-dos {
     flex: 1;
     height: 100vh;
-    background-color: red;
   }
   .section-tres {
     flex: 1;
     height: 100vh;
-    background-color: blue;
+    background-color: #00947e;
   }
   .section-cuatro {
     flex: 1;
     height: 100vh;
-    background-color: green;
+    background-color: #fafafa;
   }
   .section-cinco {
     flex: 1;
     height: 100vh;
-    background-color: #990099;
+    background-color: #00947e;
   }
 `;
