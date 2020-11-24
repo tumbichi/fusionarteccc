@@ -15,8 +15,8 @@ const LoginLayout = ({ goToMisCursos }) => {
   const dispatch = useDispatch();
   const [inputEmail, setEmail] = useState('');
   const [inputPassword, setPassword] = useState('');
-  const loginError = useSelector(({ auth }) => {
-    return auth.loginError;
+  const { loginError, user } = useSelector(({ auth }) => {
+    return { loginError: auth.loginError, user: auth.user };
   });
 
   useEffect(() => {
@@ -25,6 +25,12 @@ const LoginLayout = ({ goToMisCursos }) => {
       console.log();
     }
   }, [loginError]);
+
+  useEffect(() => {
+    if (user) {
+      goToMisCursos();
+    }
+  }, [user]);
 
   const handleLogin = () => {
     dispatch(requestLogin(inputEmail, inputPassword));

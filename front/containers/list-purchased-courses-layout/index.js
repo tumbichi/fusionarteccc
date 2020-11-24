@@ -1,7 +1,7 @@
 import React from 'react';
 import {} from './styles';
 
-const ListPurchasedCourseesLayout = () => {
+const ListPurchasedCourseesLayout = ({ goToCourse }) => {
   return <div>ListPurchasedCourseesLayout</div>;
 };
 

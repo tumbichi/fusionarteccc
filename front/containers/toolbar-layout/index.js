@@ -13,6 +13,12 @@ const ToolbarLayout = () => {
   const goToLogIn = () => {
     router.push(`/auth/login`);
   };
+  const goToRegister = () => {
+    router.push(`/auth/register`);
+  };
+  const goToMyCourses = () => {
+    router.push(`/mis-cursos`);
+  };
 
   return (
     <Toolbar
@@ -21,6 +27,8 @@ const ToolbarLayout = () => {
         <Keypad>
           <Button text="HOME" onClick={goToHome} />
           <Button text="INICIAR SESIÓN" onClick={goToLogIn} />
+          <Button text="REGISTRARSE" onClick={goToRegister} />
+          <Button text="MIS CURSOS" onClick={goToMyCourses} />
           <Button
             leftIcon={
               <svg

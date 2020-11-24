@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import LoginContainer from '../../containers/login-layout';
+import ToolbarContainer from '../../containers/toolbar-layout';
 
 const LoginPage = () => {
   const router = useRouter();
@@ -10,6 +11,7 @@ const LoginPage = () => {
   };
   return (
     <>
+      <ToolbarContainer /> {/* temporal */}
       <LoginContainer goToMisCursos={goToMisCursos} />
     </>
   );
