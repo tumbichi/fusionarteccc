@@ -1,7 +1,7 @@
 import React from 'react';
 import {} from './styles';
 import Button from '../../components/Button';
-import { FlexRowContainer as Container } from '../../layouts';
+import { FlexRowReverseContainer as Container } from '../../layouts';
 
 const SeeMoreCoursesLayout = ({ goToHome }) => {
   return (

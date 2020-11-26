@@ -19,6 +19,12 @@ export const FlexContainer = styled.div`
   min-height: 100vh;
 `;
 
+export const FlexRowReverseContainer = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+`;
+
 export const Flex1Container = styled.div`
   display: flex;
   flex-direction: column;

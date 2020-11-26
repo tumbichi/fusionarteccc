@@ -4,7 +4,7 @@ import { FlexContainer as Container, FormContainer, FlexRowContainer as FlexRow 
 import InputText from '../../components/InputText';
 import Button from '../../components/Button';
 
-const RegisterLayout = () => {
+const RegisterLayout = ({ goToHome }) => {
   const [email, setEmail] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
   const [password2, setPassword2] = useState({ value: '', error: '' });
@@ -137,9 +137,17 @@ const RegisterLayout = () => {
     if (thereIsAnError) {
       console.log(thereIsAnError);
     } else {
-      registerUser({ email, password, password2, nombre, apellido, fechaNacimiento })
+      registerUser({
+        email: email.value,
+        password: password.value,
+        password2: password2.value,
+        nombre: nombre.value,
+        apellido: apellido.value,
+        fechaNacimiento: fechaNacimiento.value,
+      })
         .then((user) => {
           console.log('Usuario creado', user);
+          goToHome();
         })
         .catch((error) => {
           console.log('Error register user', error);
