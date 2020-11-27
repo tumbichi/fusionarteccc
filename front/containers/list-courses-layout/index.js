@@ -2,12 +2,12 @@ import React from 'react';
 import { ImageContainer, LogoContainer, HeadContainer } from './styles';
 import CourseCard from '../../components/CourseCard';
 
-const ListCoursesLayout = ({ category, goToCourse, bgImage }) => {
+const ListCoursesLayout = ({ category, goToPurchaseCourse, bgImage }) => {
   const courses = ['Dibujo', 'Canto', 'Danza'];
 
   const courseList = () => {
     return courses.map((nombre) => {
-      return <CourseCard name={nombre} goToCourse={goToCourse} />;
+      return <CourseCard name={nombre} goToPurchaseCourse={goToPurchaseCourse} />;
     });
   };
   const getContainer = () => {

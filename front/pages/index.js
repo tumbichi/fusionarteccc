@@ -119,8 +119,8 @@ const HomePage = () => {
   }, []);
 
   // eslint-disable-next-line no-unused-vars
-  const goToCourse = (course) => {
-    router.push(`/curso/${course}`);
+  const goToPurchaseCourse = (course) => {
+    router.push(`/compra-curso/${course}`);
   };
 
   return (
@@ -138,13 +138,21 @@ const HomePage = () => {
           <BannerContainer />
         </Element>
         <Element className="section-dos" name="section3">
-          <ListCoursesContainer category="FUSIONADITOS KIDS" bgImage="kids" goToCourse={goToCourse} />
+          <ListCoursesContainer category="FUSIONADITOS KIDS" bgImage="kids" goToPurchaseCourse={goToPurchaseCourse} />
         </Element>
         <Element className="section-tres" name="section4">
-          <ListCoursesContainer category="FUSIONARTE JOVENES" bgImage="jovenes" goToCourse={goToCourse} />
+          <ListCoursesContainer
+            category="FUSIONARTE JOVENES"
+            bgImage="jovenes"
+            goToPurchaseCourse={goToPurchaseCourse}
+          />
         </Element>
         <Element className="section-cuatro" name="section5">
-          <ListCoursesContainer category="FUSIONARTE ADULTOS" bgImage="adultos" goToCourse={goToCourse} />
+          <ListCoursesContainer
+            category="FUSIONARTE ADULTOS"
+            bgImage="adultos"
+            goToPurchaseCourse={goToPurchaseCourse}
+          />
         </Element>
         <Element className="section-cinco" name="section6">
           <AboutUsContainer />

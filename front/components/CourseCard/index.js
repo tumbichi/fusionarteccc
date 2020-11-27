@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import {} from './styles';
 import Button from '../Button';
 
-const CourseCard = ({ name, goToCourse }) => {
-  return <Button text={name} onClick={() => goToCourse(name)} />;
+const CourseCard = ({ name, goToPurchaseCourse }) => {
+  return <Button text={name} onClick={() => goToPurchaseCourse(name)} />;
 };
 
 CourseCard.defaultProps = {
   name: '',
-  goToCourse: () => {},
+  goToPurchaseCourse: () => {},
 };
 
 CourseCard.propTypes = {
   name: PropTypes.string,
-  goToCourse: PropTypes.func,
+  goToPurchaseCourse: PropTypes.func,
 };
 
 export default CourseCard;

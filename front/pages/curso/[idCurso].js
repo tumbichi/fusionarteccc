@@ -8,10 +8,11 @@ export default function Curso() {
   return (
     <>
       <Head>
-        <title>Curso: nombre curso</title>
+        <title>Curso: nombre </title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <ToolbarContainer />
+
       <ListChaptersContainer />
       <InfoChapterContainer />
     </>
