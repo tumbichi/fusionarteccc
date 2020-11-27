@@ -7,6 +7,7 @@ import curso from './reducers/curso.reducer';
 import config from './reducers/config.reducer';
 import capitulo from './reducers/capitulo.reducer';
 import auth from './reducers/auth.reducer';
+import user from './reducers/user.reducer';
 
 const persistConfig = {
   key: 'root',
@@ -19,6 +20,7 @@ const reducers = combineReducers({
   capitulo,
   config: persistReducer(persistConfig, config),
   curso,
+  user,
 });
 
 /*  */
