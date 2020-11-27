@@ -57,3 +57,14 @@ export const Layout = styled.div`
     background-color: #00947e;
   }
 `;
+export const AdminContainerPages = styled.div`
+    display:flex;
+    width:100%;
+    flex-direction: column;
+    align-items:center;
+    min-height: 100vh;
+    background:whitesmoke;
+`;
+
+
+
