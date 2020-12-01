@@ -10,13 +10,10 @@ export const Wrapper = styled.ul`
 `;
 
 export const ItemCell = styled.li`
-  height: ${({ height }) => height || 'auto'} ;
   width: ${({ width }) => width || 'auto'};
-  max-width: ${({ width }) => width || 'auto'};
   flex: 1;
-  word-wrap: break-word;
+  overflow: hidden;
   p {
-    max-width: 167px;
     text-align: center;
   }
 `

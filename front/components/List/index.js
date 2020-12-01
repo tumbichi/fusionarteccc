@@ -1,25 +1,22 @@
 import React from 'react'
-import { ListWrapper, Lista } from './styles';
+import { Wrapper, ListContainer } from './styles';
 import PropTypes from 'prop-types';
 
 const List = ({children , title}) => {
     return (
-        <ListWrapper>
-            <div>{ title }</div>
-            <Lista>
+        <Wrapper>
+            <ListContainer>
                 {children}
-            </Lista>
-        </ListWrapper>
+            </ListContainer>
+        </Wrapper>
     )
 }
 
 List.defaultProps = {
-    title: '',
     children: <></>,
 };
 
-List.prototype = {
-    title: PropTypes.string,
+List.propTypes = {
     children: PropTypes.node,
 };
 

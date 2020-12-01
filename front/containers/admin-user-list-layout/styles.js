@@ -4,6 +4,8 @@ export const UserListWrapper = styled.div`
 width: ${({ width }) => width || 'auto'};
 height: ${({ height }) => height || 'auto'};
 display: flex;
-background: red;
+background: whitesmoke;
 flex-direction: column;
 `;
+
+export const BodyTable = styled.div``;

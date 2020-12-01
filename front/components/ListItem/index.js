@@ -1,11 +1,28 @@
-import React from 'react'
+import React from 'react';
+import { Wrapper, ItemCell } from './styles';
+import PropTypes from 'prop-types';
 
-const ListItem = ({ data }) => {
-    return (
-        <div>
-            {Object.keys(data).map(field => <p>{data[field]}</p>)}
-        </div>
-    )
+const ListItem = ({ columns, value }) => {
+
+  const getCellWidth = () => {
+    return `'${100 / columns.length}%'`
+  }
+
+  return (
+    <Wrapper>
+      {columns.map((column) => {
+        return <ItemCell width={getCellWidth()}> <p>{value[column] || 'asd'}</p></ItemCell>
+      })}
+    </Wrapper>
+  )
 }
 
-export default ListItem
+ListItem.defaultProps = {
+  columns: [],
+}
+
+ListItem.PropTypes = {
+  columns: PropTypes.array/* Of(PropTypes.string) */,
+}
+
+export default ListItem;
