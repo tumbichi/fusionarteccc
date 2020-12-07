@@ -74,7 +74,7 @@ const LoginLayout = ({ goToMisCursos }) => {
           onChange={handleChange}
           onFocus={handleFocus}
         />
-        {loginError ? <div>{getMessageError(loginError.code)}</div> : <div>{'-'}</div>}
+        {loginError && <div>{getMessageError(loginError.code)}</div>}
         <Button text="Iniciar sesion" color="secondary" onClick={handleLogin} />
       </FormContainer>
     </Container>

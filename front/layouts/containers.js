@@ -3,7 +3,7 @@ import styled from 'styled-components';
 // eslint-disable-next-line import/prefer-default-export
 
 export const FormContainer = styled.div.attrs({
-  className: 'flex flex-col bg-secondary p-8 shadow-xl rounded-lg',
+  className: 'flex flex-col justify-betweeen h-56 bg-secondary p-8 shadow-xl rounded-lg',
 })``;
 
 export const FlexRowContainer = styled.div.attrs({
@@ -58,13 +58,10 @@ export const Layout = styled.div`
   }
 `;
 export const AdminContainerPages = styled.div`
-    display:flex;
-    width:100%;
-    flex-direction: column;
-    align-items:center;
-    min-height: 100vh;
-    background:whitesmoke;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: whitesmoke;
 `;
-
-
-
