@@ -7,7 +7,7 @@ import Button from '../../components/Button';
 import InputText from '../../components/InputText';
 /* import { login } from '../../services/auth'; */
 import { requestLogin, setErrorLogin } from '../../store/actions';
-import { FlexContainer as Container, FormContainer } from '../../layouts';
+import { FlexContainer as Container, FormContainer, Title } from '../../layouts';
 import { AUTH_ERRORS } from '../../constants';
 
 // eslint-disable-next-line no-unused-vars
@@ -26,7 +26,8 @@ const LoginLayout = ({ goToMisCursos }) => {
     }
   }, [loginError]);
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     dispatch(requestLogin(inputEmail, inputPassword));
   };
 
@@ -63,21 +64,36 @@ const LoginLayout = ({ goToMisCursos }) => {
   };
 
   return (
-    <Container>
-      <FormContainer>
-        <InputText name="email" placeholder="Email" value={inputEmail} onChange={handleChange} onFocus={handleFocus} />
+    <div className=" bg-withe flex flex-col justify-center items-center w-screen h-screen">
+      <form
+        className=" bg-secondary shadow-2xl rounded-lg py-4 flex flex-col items-center  px-8  w-4/5 lg:w-1/3 lg:px-10"
+        onSubmit={handleLogin}
+      >
+        <h1 className=" my-4 text-3xl text-primary font-extrabold">Fusionarte</h1>
         <InputText
+          type="email"
+          inputStyles=""
+          name="email"
+          placeholder="Email"
+          value={inputEmail}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          containerStyle="w-full"
+        />
+        <InputText
+          inputStyles=""
           name="password"
           type="password"
           value={inputPassword}
           placeholder="Contraseña"
           onChange={handleChange}
           onFocus={handleFocus}
+          containerStyle="w-full"
         />
         {loginError && <div>{getMessageError(loginError.code)}</div>}
-        <Button text="Iniciar sesion" color="secondary" onClick={handleLogin} />
-      </FormContainer>
-    </Container>
+        <Button text="Iniciar sesion" color="secondary" type="submit" />
+      </form>
+    </div>
   );
 };
 
