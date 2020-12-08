@@ -1,8 +1,14 @@
-import { parseSnapshotToArray } from '../utils/firebase-helper';
+import { parseSnapshotToArray } from '../utils';
 import { db } from './firebase';
 
 // eslint-disable-next-line import/prefer-default-export
-export const saveUser = async ({ id, email, nombre, apellido, fechaNacimiento }) => {
+export const saveUser = async ({
+  id,
+  email,
+  nombre,
+  apellido,
+  fechaNacimiento,
+}) => {
   let response;
 
   /* const userId = db.ref().child('Usuarios').push().key; */
@@ -41,11 +47,13 @@ export const saveUser = async ({ id, email, nombre, apellido, fechaNacimiento })
 };
 
 export const suscribeToUser = async (callback) => {
-  db.ref().child('Usuarios').on('value', (snapshot) => {
-      if(snapshot){
+  db.ref()
+    .child('Usuarios')
+    .on('value', (snapshot) => {
+      if (snapshot) {
         const arr = parseSnapshotToArray(snapshot);
         console.log('arrUsuarios', arr);
-        callback(arr)
+        callback(arr);
       }
-  })
-}
+    });
+};
