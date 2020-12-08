@@ -1,14 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Wrapper, IconContainer } from './styles';
 
 // eslint-disable-next-line no-unused-vars
 const Button = ({ size, text, color, onClick, leftIcon }) => {
+  let bg;
+  let bgHover;
+  let letters;
+  let lettersHover;
+  if (color === 'primary') {
+    bg = 'bg-primary';
+    bgHover = 'hover:bg-secondary';
+    letters = 'text-secondary';
+    lettersHover = 'hover:text-primary';
+  }
+  if (color === 'secondary') {
+    bg = 'bg-primary';
+    bgHover = 'hover:bg-acent';
+    letters = 'text-secondary';
+    lettersHover = 'hover:text-secondary';
+  }
   return (
-    <Wrapper color={color} onClick={onClick}>
-      {leftIcon && <IconContainer>{leftIcon}</IconContainer>}
+    <button
+      className={`flex w-full items-center justify-center px-2 py-3.5
+       focus:shadow-2xl focus:outline-none 
+       ${bgHover} ${bg} ${lettersHover} ${letters} 
+       rounded-lg  md:tracking-wide font-semibold `}
+      onClick={onClick}
+      type="button"
+    >
+      <p className="mx-1">{leftIcon}</p>
       {text}
-    </Wrapper>
+    </button>
   );
 };
 
