@@ -21,7 +21,7 @@ const Button = ({ size, text, color, onClick, leftIcon }) => {
   }
   return (
     <button
-      className={`flex w-full items-center justify-center px-2 py-3.5
+      className={`flex w-full items-center justify-center px-2 py-4 text-lg
        focus:shadow-2xl focus:outline-none 
        ${bgHover} ${bg} ${lettersHover} ${letters} 
        rounded-lg  md:tracking-wide font-semibold `}
