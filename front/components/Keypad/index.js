@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { KeypadWrapper } from './styles';
 
 const Keypad = ({ children }) => {
-  return <KeypadWrapper>{children}</KeypadWrapper>;
+  return <div className="flex items-center space-x-2 md:space-x-4 lg:space-x-8 mr-4">{children}</div>;
 };
 Keypad.defaultProps = {
   children: <></>,

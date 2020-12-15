@@ -1,13 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ToolbarWrapper, ImageWrapper as Logo } from './styles';
 
 const Toolbar = ({ right, goToHome }) => {
   return (
-    <ToolbarWrapper>
-      <Logo src="../../static/images/logo.png" onClick={goToHome} />
+    <div className="bg-primary flex justify-between items-center h-12 md:h-16 lg:h-20 w-full">
+      <button onClick={goToHome} type="button" className="focus:outline-none">
+        <img
+          alt="logo fusionartel"
+          className="  h-16 md:h-20 lg:h-24 mt-6 md:mt-10 lg:mt-12 ml-4 md:ml-6 lg:ml-10 z-50"
+          src="../../static/images/logo.png"
+        />
+      </button>
       {right}
-    </ToolbarWrapper>
+    </div>
   );
 };
 
