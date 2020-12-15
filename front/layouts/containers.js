@@ -2,6 +2,14 @@ import styled from 'styled-components';
 
 // eslint-disable-next-line import/prefer-default-export
 
+export const FormContainer = styled.div.attrs({
+  className: 'flex flex-col bg-secondary p-8 shadow-xl rounded-lg',
+})``;
+
+export const FlexRowContainer = styled.div.attrs({
+  className: 'lg:flex ',
+})``;
+
 export const FlexContainer = styled.div`
   display: flex;
   flex-direction: column;
