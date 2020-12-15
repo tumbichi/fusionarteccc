@@ -157,6 +157,7 @@ const RegisterLayout = () => {
             value={nombre.value}
             onChange={handleInputTextChange}
             errorText={nombre.error}
+            containerStyle="mx-4"
           />
           <InputText
             name="apellido"
@@ -164,6 +165,7 @@ const RegisterLayout = () => {
             value={apellido.value}
             onChange={handleInputTextChange}
             errorText={apellido.error}
+            containerStyle="mx-4"
           />
         </FlexRow>
         {console.log('ERROR EMAIL', email.error)}
@@ -174,6 +176,7 @@ const RegisterLayout = () => {
           value={email.value}
           onChange={handleInputTextChange}
           errorText={email.error}
+          containerStyle="mx-4"
         />
         <FlexRow>
           <InputText
@@ -183,6 +186,7 @@ const RegisterLayout = () => {
             value={password.value}
             onChange={handleInputTextChange}
             errorText={password.error}
+            containerStyle="mx-4"
           />
           <InputText
             type="password"
@@ -191,6 +195,7 @@ const RegisterLayout = () => {
             value={password2.value}
             onChange={handleInputTextChange}
             errorText={password2.error}
+            containerStyle="mx-4"
           />
         </FlexRow>
         <InputText
@@ -200,6 +205,7 @@ const RegisterLayout = () => {
           value={fechaNacimiento.value}
           onChange={handleInputTextChange}
           errorText={fechaNacimiento.error}
+          containerStyle="mx-4"
         />
         <Button text="Registrate" color="secondary" onClick={handleRegister} />
       </FormContainer>
