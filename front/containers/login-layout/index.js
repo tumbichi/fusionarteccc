@@ -11,12 +11,14 @@ import { requestLogin, setErrorLogin } from '../../store/actions';
 import { AUTH_ERRORS } from '../../constants';
 
 // eslint-disable-next-line no-unused-vars
-const LoginLayout = ({ goToMisCursos }) => {
+const LoginLayout = ({ goToHome }) => {
   const dispatch = useDispatch();
   const [inputEmail, setEmail] = useState('');
   const [inputPassword, setPassword] = useState('');
-  const loginError = useSelector(({ auth }) => {
-    return auth.loginError;
+  const [passwordError, setPasswordError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const { loginError, user } = useSelector(({ auth }) => {
+    return { loginError: auth.loginError, user: auth.user };
   });
 
   useEffect(() => {
@@ -26,9 +28,36 @@ const LoginLayout = ({ goToMisCursos }) => {
     }
   }, [loginError]);
 
+  useEffect(() => {
+    if (user) {
+      goToHome();
+    }
+  }, [user]);
+
+  // eslint-disable-next-line no-shadow
+  const handleErrors = ({ inputEmail, inputPassword }) => {
+    let isAnError = false;
+    if (inputEmail === '') {
+      setEmailError('Debe ingresar un email.');
+      isAnError = isAnError || true;
+    }
+    if (inputPassword === '') {
+      setPasswordError('Debe ingresar una contraseña.');
+      isAnError = isAnError || true;
+    }
+    return isAnError;
+  };
+
   const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(requestLogin(inputEmail, inputPassword));
+    const thereIsAnError = handleErrors({ inputEmail, inputPassword });
+    if (thereIsAnError) {
+      console.log('setemailerror', emailError);
+    } else {
+      setEmailError('');
+      setPasswordError('');
+      dispatch(requestLogin(inputEmail, inputPassword));
+    }
   };
 
   const handleChange = useCallback(({ target }) => {
@@ -36,9 +65,11 @@ const LoginLayout = ({ goToMisCursos }) => {
     switch (name) {
       case 'email':
         setEmail(value);
+        setEmailError('');
         return;
       case 'password':
         setPassword(value);
+        setPasswordError('');
       default:
         // eslint-disable-next-line no-useless-return
         return;
@@ -87,6 +118,7 @@ const LoginLayout = ({ goToMisCursos }) => {
           onChange={handleChange}
           onFocus={handleFocus}
           containerStyle="w-full"
+          errorText={emailError}
         />
         <InputText
           inputStyles=""
@@ -97,6 +129,7 @@ const LoginLayout = ({ goToMisCursos }) => {
           onChange={handleChange}
           onFocus={handleFocus}
           containerStyle="w-full"
+          errorText={passwordError}
         />
         <Button text="Iniciar sesion" color="secondary" type="submit" width="w-full py-3" />
       </form>

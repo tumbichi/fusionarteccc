@@ -5,12 +5,12 @@ import LoginContainer from '../../containers/login-layout';
 const LoginPage = () => {
   const router = useRouter();
 
-  const goToMisCursos = () => {
-    router.push(`/mis-cursos`);
+  const goToHome = () => {
+    router.push(`/`);
   };
   return (
     <>
-      <LoginContainer goToMisCursos={goToMisCursos} />
+      <LoginContainer goToHome={goToHome} />
     </>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // eslint-disable-next-line no-unused-vars
-const Button = ({ text, color, onClick, leftIcon, width }) => {
+const Button = ({ text, color, onClick, leftIcon, width, type }) => {
   let bg;
   let bgHover;
   let letters;
@@ -26,7 +26,8 @@ const Button = ({ text, color, onClick, leftIcon, width }) => {
        ${bgHover} ${bg} ${lettersHover} ${letters} ${width} 
        rounded-lg  md:tracking-wide font-semibold `}
       onClick={onClick}
-      type="button"
+      // eslint-disable-next-line react/button-has-type
+      type={type}
     >
       {leftIcon ? <p className="mx-1">{leftIcon}</p> : null}
       {text}
@@ -38,6 +39,7 @@ Button.defaultProps = {
   width: '',
   text: '',
   color: 'primary',
+  type: 'button',
   leftIcon: null,
   onClick: () => {},
 };
@@ -46,6 +48,7 @@ Button.propTypes = {
   width: PropTypes.string,
   text: PropTypes.string,
   color: PropTypes.oneOf(['primary', 'secondary']),
+  type: PropTypes.string,
   leftIcon: PropTypes.node,
   onClick: PropTypes.func,
 };
