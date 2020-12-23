@@ -5,6 +5,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '../../components/Button';
 import InputText from '../../components/InputText';
+import AlertWarningLabel from '../../components/Labels/AlertWarningLabel';
 /* import { login } from '../../services/auth'; */
 import { requestLogin, setErrorLogin } from '../../store/actions';
 import { AUTH_ERRORS } from '../../constants';
@@ -68,6 +69,14 @@ const LoginLayout = ({ goToMisCursos }) => {
         className=" bg-secondary shadow-2xl rounded-lg py-8 flex flex-col items-center  px-8 w-full lg:w-1/3 lg:px-10"
         onSubmit={handleLogin}
       >
+        <AlertWarningLabel
+          containerStyle="my-8"
+          show={1}
+          messageLeft=""
+          messageRigth={getMessageError(loginError)}
+          typeOfLabel="bg-red-400"
+        />
+
         <h1 className=" my-4 text-3xl text-primary font-extrabold">Fusionarte</h1>
         <InputText
           type="email"
@@ -89,7 +98,6 @@ const LoginLayout = ({ goToMisCursos }) => {
           onFocus={handleFocus}
           containerStyle="w-full"
         />
-        {loginError && <div>{getMessageError(loginError.code)}</div>}
         <Button text="Iniciar sesion" color="secondary" type="submit" width="w-full py-3" />
       </form>
     </div>
