@@ -1,2 +1,3 @@
 export * from './config';
-export * from './firebase-errors';
+export * from './firebase-error';
+export * from './firebase-errors-login';

@@ -1,33 +1,69 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-fallthrough */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/react-in-jsx-scope */
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Link from 'next/link';
 import Button from '../../components/Button';
 import InputText from '../../components/InputText';
 import AlertWarningLabel from '../../components/Labels/AlertWarningLabel';
 /* import { login } from '../../services/auth'; */
 import { requestLogin, setErrorLogin } from '../../store/actions';
-import { AUTH_ERRORS } from '../../constants';
+import { AUTH_ERRORS_LOGIN } from '../../constants';
+import { getMessageError, isEmailError, isPasswordError } from '../../utils';
 
 // eslint-disable-next-line no-unused-vars
 const LoginLayout = ({ goToMisCursos }) => {
   const dispatch = useDispatch();
   const [inputEmail, setEmail] = useState('');
   const [inputPassword, setPassword] = useState('');
-  const loginError = useSelector(({ auth }) => {
-    return auth.loginError;
+
+  /*   const [passwordError, setPasswordError] = useState('');
+  const [emailError, setEmailError] = useState(''); */
+  const { loginError, user } = useSelector(({ auth }) => {
+    return { loginError: auth.loginError, user: auth.user };
   });
 
   useEffect(() => {
     if (loginError) {
       console.log('loginError', loginError.code);
-      console.log();
+      console.log('loginErrorMessage', loginError.message);
+      getMessageError(loginError.code);
     }
   }, [loginError]);
 
+
+  useEffect(() => {
+    if (user) {
+      goToHome();
+    }
+  }, [user]);
+
+  // eslint-disable-next-line no-shadow
+  /*   const handleErrors = ({ inputEmail, inputPassword }) => {
+    let isAnError = false;
+    if (inputEmail === '') {
+      setEmailError('Debe ingresar un email.');
+      isAnError = isAnError || true;
+    }
+    if (inputPassword === '') {
+      setPasswordError('Debe ingresar una contraseña.');
+      isAnError = isAnError || true;
+    }
+    return isAnError;
+  }; */
+
   const handleLogin = (e) => {
     e.preventDefault();
+    /* const thereIsAnError = handleErrors({ inputEmail, inputPassword });
+    if (thereIsAnError) {
+      // console.log('setemailerror', emailError);
+    } else {
+      setEmailError('');
+      setPasswordError('');
+      dispatch(requestLogin(inputEmail, inputPassword));
+    } */
     dispatch(requestLogin(inputEmail, inputPassword));
   };
 
@@ -36,14 +72,33 @@ const LoginLayout = ({ goToMisCursos }) => {
     switch (name) {
       case 'email':
         setEmail(value);
+        /* setEmailError(''); */
         return;
       case 'password':
         setPassword(value);
+        /* setPasswordError(''); */
       default:
         // eslint-disable-next-line no-useless-return
         return;
     }
   }, []);
+
+  const handleError = (inputName) => {
+    // eslint-disable-next-line default-case
+    switch (inputName) {
+      case 'email':
+        if (isEmailError(loginError.code)) {
+          return getMessageError(loginError.code);
+        }
+        break;
+      case 'password':
+        if (isPasswordError(loginError.code)) {
+          return getMessageError(loginError.code);
+        }
+        break;
+    }
+    return null;
+  };
 
   const handleFocus = () => {
     if (loginError) {
@@ -51,54 +106,44 @@ const LoginLayout = ({ goToMisCursos }) => {
     }
   };
 
-  // eslint-disable-next-line consistent-return
-  const getMessageError = (messageCode) => {
-    const error = AUTH_ERRORS.find(({ code }) => {
-      return code === messageCode;
-    });
-
-    if (error) {
-      return error.message;
-    }
-    // console.log('messageCode', messageCode);
-  };
-
   return (
     <div className=" bg-withe flex flex-col justify-center items-center w-screen h-screen">
       <form
-        className=" bg-secondary shadow-2xl rounded-lg py-8 flex flex-col items-center  px-8 w-full lg:w-1/3 lg:px-10"
+        className=" bg-secondary shadow-2xl rounded-lg space-y-3 flex flex-col items-center  p-6 w-full lg:w-3/6 lg:px-10"
         onSubmit={handleLogin}
       >
         <AlertWarningLabel
-          containerStyle="my-8"
-          show={1}
-          messageLeft=""
-          messageRigth={getMessageError(loginError)}
-          typeOfLabel="bg-red-400"
+          containerStyle=""
+          show={loginError && !isEmailError(loginError.code) && !isPasswordError(loginError.code)}
+          message={loginError ? getMessageError(loginError.code) : null}
         />
-
-        <h1 className=" my-4 text-3xl text-primary font-extrabold">Fusionarte</h1>
+        <h1 className="text-3xl text-primary font-extrabold">Fusionarte</h1>
         <InputText
           type="email"
-          inputStyles=""
           name="email"
           placeholder="Email"
           value={inputEmail}
           onChange={handleChange}
           onFocus={handleFocus}
           containerStyle="w-full"
+          errorText={loginError ? handleError('email') : null}
         />
         <InputText
-          inputStyles=""
-          name="password"
           type="password"
-          value={inputPassword}
+          name="password"
           placeholder="Contraseña"
+          value={inputPassword}
           onChange={handleChange}
           onFocus={handleFocus}
           containerStyle="w-full"
+          errorText={loginError ? handleError('password') : null}
         />
-        <Button text="Iniciar sesion" color="secondary" type="submit" width="w-full py-3" />
+        <Button text="Iniciar sesion" color="secondary" type="submit" width="w-full" />
+        <div className="flex justify-center items-center">
+          <Link href="/auth/register" >
+            <a className="link-label">No tenes cuenta? ¡Registrate!</a>
+          </Link>
+        </div>
       </form>
     </div>
   );

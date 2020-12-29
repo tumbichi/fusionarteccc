@@ -3,19 +3,18 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const AlertWarningLabel = (props) => {
-  const { show, typeOfLabel, containerStyle, messageLeft, messageRigth } = props;
+  const { show, typeOfLabel, containerStyle, message } = props;
   const [hiddenState, setHiddenState] = useState('');
   return show ? (
     <div
       className={`flex ${typeOfLabel} ${containerStyle} rounded-md p-4 w-full items-center justify-between ${hiddenState}`}
     >
       <div>
-        <label className="font-semibold text-secondaryLight ">{messageLeft}</label>{' '}
-        <label className="text-secondaryLight ">{messageRigth}</label>
+        <label className="font-semibold text-black text-opacity-70">{message}</label>{' '}
       </div>
       <button
         type="button"
-        className="focus:outline-none"
+        className="focus:outline-none mx-2"
         onClick={(e) => {
           e.preventDefault();
           setHiddenState('hidden');
@@ -29,16 +28,14 @@ const AlertWarningLabel = (props) => {
 
 AlertWarningLabel.defaultProps = {
   containerStyle: '',
-  messageRigth: '',
-  messageLeft: '',
+  message: '',
   typeOfLabel: 'bg-red-400',
   show: false,
 };
 
 AlertWarningLabel.propTypes = {
   containerStyle: PropTypes.string,
-  messageRigth: PropTypes.string,
-  messageLeft: PropTypes.string,
+  message: PropTypes.string,
   typeOfLabel: PropTypes.oneOf(['bg-red-400', 'bg-orange-400']),
   show: PropTypes.bool,
 };

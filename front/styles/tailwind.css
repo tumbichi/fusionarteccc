@@ -5,7 +5,7 @@
   @apply block px-6 h-14  border-b-4 rounded-md focus:outline-none bg-transparent bg-secondary focus:outline-none focus:border-primary border-b-4;
 }
 .input-label {
-  @apply absolute left-6 top-4 duration-200 text-gray-400 focus:placeholder-primary;
+  @apply absolute left-6 top-2.5 duration-200 text-gray-400 focus:placeholder-primary;
 }
 input:invalid {
   @apply border-red-400;
@@ -13,8 +13,19 @@ input:invalid {
 input:not(:placeholder-shown) ~ label {
   @apply transform text-xs -translate-y-3 text-primary;
 }
+
+/* Labels global styles */
+
 .error-label {
-  @apply text-red-400 text-sm;
+  @apply text-alert text-sm;
 }
+
+.link-label {
+  @apply text-sm text-link  hover:underline hover:text-linkHover;
+}
+.gray-sm-text {
+  @apply text-black opacity-80 text-xs;
+}
+
 
 @tailwind utilities;
