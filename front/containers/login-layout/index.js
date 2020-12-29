@@ -17,7 +17,6 @@ const LoginLayout = ({ goToHome }) => {
   const dispatch = useDispatch();
   const [inputEmail, setEmail] = useState('');
   const [inputPassword, setPassword] = useState('');
-
   /*   const [passwordError, setPasswordError] = useState('');
   const [emailError, setEmailError] = useState(''); */
   const { loginError, user } = useSelector(({ auth }) => {
