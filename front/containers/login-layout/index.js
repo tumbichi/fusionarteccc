@@ -10,11 +10,10 @@ import InputText from '../../components/InputText';
 import AlertWarningLabel from '../../components/Labels/AlertWarningLabel';
 /* import { login } from '../../services/auth'; */
 import { requestLogin, setErrorLogin } from '../../store/actions';
-import { AUTH_ERRORS_LOGIN } from '../../constants';
 import { getMessageError, isEmailError, isPasswordError } from '../../utils';
 
 // eslint-disable-next-line no-unused-vars
-const LoginLayout = ({ goToMisCursos }) => {
+const LoginLayout = ({ goToHome }) => {
   const dispatch = useDispatch();
   const [inputEmail, setEmail] = useState('');
   const [inputPassword, setPassword] = useState('');
@@ -32,7 +31,6 @@ const LoginLayout = ({ goToMisCursos }) => {
       getMessageError(loginError.code);
     }
   }, [loginError]);
-
 
   useEffect(() => {
     if (user) {
@@ -76,7 +74,7 @@ const LoginLayout = ({ goToMisCursos }) => {
         return;
       case 'password':
         setPassword(value);
-        /* setPasswordError(''); */
+      /* setPasswordError(''); */
       default:
         // eslint-disable-next-line no-useless-return
         return;
