@@ -31,5 +31,5 @@ export const AUTH_ERRORS = [
   {
     code: 'auth/wrong-password',
     message: 'Contraseña incorrecta',
-  }
+  },
 ];
