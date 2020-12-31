@@ -2,6 +2,7 @@
 export const parseSnapshotToArray = (snapshot) => {
   const result = [];
   const snapVal = snapshot.val();
+  console.log(snapVal);
   const fields = Object.keys(snapVal);
 
   fields.forEach((id) => {
