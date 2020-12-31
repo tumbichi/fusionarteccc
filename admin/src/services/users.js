@@ -46,14 +46,12 @@ export const saveUser = async ({
   return response;
 };
 
-export const suscribeToUser = async (callback) => {
-  db.ref()
-    .child('Usuarios')
-    .on('value', (snapshot) => {
-      if (snapshot) {
-        const arr = parseSnapshotToArray(snapshot);
-        console.log('arrUsuarios', arr);
-        callback(arr);
-      }
-    });
+export const fetchUsers = async () => {
+  let snapshot;
+  try {
+    snapshot = await db.ref().child('Usuarios').once('value');
+  } catch (error) {
+    return Promise.reject(error);
+  }
+  return Promise.resolve(parseSnapshotToArray(snapshot));
 };

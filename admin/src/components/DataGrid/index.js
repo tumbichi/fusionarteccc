@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import ReactDataGrid from '@inovua/reactdatagrid-community';
-import '@inovua/reactdatagrid-community/index.css';
-import { db } from '../../services/firebase';
+import DataTable from 'react-data-table';
+import { fetchUsers } from '../../services';
 
 const DataGrid = () => {
   const gridStyle = { minHeight: 550 };
@@ -17,28 +16,26 @@ const DataGrid = () => {
     },
     { name: '_key', header: 'key', maxWidth: 400, defaultFlex: 1 },
   ];
-  const [dataSource, setDataSource] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    const items = [];
-    db.ref('Usuarios').once('value', (snap) => {
-      snap.forEach((child) => {
-        items.push({
-          _key: child.key,
-          ...child.val(),
-        });
+    fetchUsers()
+      .then((data) => {
+        setUsers(data);
+      })
+      .catch((error) => {
+        console.log('fetchUserError', error);
       });
-      setDataSource(items);
-    });
   }, []);
-
+  np;
   return (
-    <ReactDataGrid
+    <DataTable
       idProperty="id"
       columns={columns}
-      dataSource={dataSource}
+      data={users}
       style={gridStyle}
     />
   );
 };
+
 export default DataGrid;
