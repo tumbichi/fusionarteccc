@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import DataGrid from '../components/DataGrid';
 import { auth } from '../services';
+import MainLayout from '../containers/main-layout';
 
 const Home = () => {
   // eslint-disable-next-line no-unused-vars
@@ -20,7 +21,11 @@ const Home = () => {
     Redirect();
   }, [user, loading]);
 
-  return <DataGrid />;
+  return (
+    <MainLayout>
+      <DataGrid />
+    </MainLayout>
+  );
 };
 
 export default Home;
