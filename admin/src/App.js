@@ -7,19 +7,28 @@ import {
 } from 'react-router-dom';
 import HomePage from './pages/home';
 import LoginPage from './pages/login';
+import UsersPage from './pages/users';
+import GlobalStyles from './global-styles';
+import MainLayout from './containers/main-layout';
 
 function App() {
   return (
     <>
       <Router>
-        <Switch>
-          <Route exact path="/">
-            <HomePage />
+        <GlobalStyles />
+        <MainLayout>
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+            <Route exact path="/login">
+              <LoginPage />
+            </Route>
+          </Switch>
+          <Route exact path="/users">
+            <UsersPage />
           </Route>
-          <Route exact path="/login">
-            <LoginPage />
-          </Route>
-        </Switch>
+        </MainLayout>
       </Router>
     </>
   );

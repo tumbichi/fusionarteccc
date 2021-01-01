@@ -1,11 +1,29 @@
 import React from 'react';
-import { HeaderContainer } from './styles';
+import { Menu } from 'react-feather';
+import {
+  HeaderContainer,
+  TitleFusion,
+  TitleAdmin,
+  IconContainer,
+  IconBackground,
+} from './styles';
 
-const Header = () => {
+// eslint-disable-next-line react/prop-types
+const Header = ({ open, doCollapse }) => {
   return (
     <HeaderContainer>
-      <h1>HEADER</h1>
-      <h1>DATA</h1>
+      <IconContainer open={open}>
+        <IconBackground open={open}>
+          <Menu
+            size={24}
+            onClick={() => {
+              doCollapse();
+            }}
+          />
+        </IconBackground>
+      </IconContainer>
+      <TitleFusion>FUSIONARTE</TitleFusion>
+      <TitleAdmin>Admin</TitleAdmin>
     </HeaderContainer>
   );
 };

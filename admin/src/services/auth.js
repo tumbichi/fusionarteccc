@@ -1,4 +1,5 @@
 import { auth } from './firebase';
+// eslint-disable-next-line import/no-unresolved
 import { saveUser } from './users';
 
 export const login = async (email, password) => {
