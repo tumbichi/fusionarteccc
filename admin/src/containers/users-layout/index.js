@@ -1,13 +1,17 @@
+/* eslint-disable import/named */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { UserStatus } from './models/status';
 import { fetchUsers, selectUser, unselectUser } from './actions';
-import UserLayoutLoading from './components/user-layout-loading';
-import UserLayoutSuccess from './components/user-layout-success';
-import UserLayoutFailure from './components/user-layout-failure';
-import UserLayoutDetails from './components/user-layout-details';
+import {
+  UserLayoutLoading,
+  UserLayoutSuccess,
+  UserLayoutFailure,
+  UserLayoutDetails,
+  UserLayoutEdit,
+} from './components';
 
 const UsersLayout = () => {
   const dispatch = useDispatch();
@@ -22,8 +26,11 @@ const UsersLayout = () => {
   }, []);
 
   const handleEditUser = (user) => {
-    console.log('editUser', user);
-    dispatch(selectUser(user));
+    dispatch(selectUser({ user, status: UserStatus.EDIT }));
+  };
+
+  const handleDetailsUser = (user) => {
+    dispatch(selectUser({ user, status: UserStatus.DETAILS }));
   };
 
   const handleDeleteUser = (user) => {
@@ -42,13 +49,15 @@ const UsersLayout = () => {
       return (
         <UserLayoutSuccess
           data={data}
-          loading={status === UserStatus.LOADING}
           onClickEdit={handleEditUser}
           onClickDelete={handleDeleteUser}
+          onClickDetails={handleDetailsUser}
         />
       );
     case UserStatus.FAILURE:
       return <UserLayoutFailure />;
+    case UserStatus.EDIT:
+      return <UserLayoutEdit user={selectedUser} back={handleBackToDetails} />;
     case UserStatus.DETAILS:
       return (
         <UserLayoutDetails user={selectedUser} back={handleBackToDetails} />

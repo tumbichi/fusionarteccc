@@ -3,14 +3,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../../components/Header/Header';
 import SideBar from '../../components/SideBar';
-import {
-  Container,
-  HorizontalFlex,
-  ContentWrapper,
-  MainContent,
-} from './styles';
+import { Container, ContentWrapper, MainContent } from './styles';
 
-const DefaultContainer = ({ children }) => {
+const MainLayout = ({ children }) => {
   const [sideOpen, setSideOpen] = useState(false);
 
   const handleCollapseSideBar = () => {
@@ -28,12 +23,12 @@ const DefaultContainer = ({ children }) => {
   );
 };
 
-DefaultContainer.defaultProps = {
+MainLayout.defaultProps = {
   children: null,
 };
 
-DefaultContainer.propTypes = {
+MainLayout.propTypes = {
   children: PropTypes.node,
 };
 
-export default DefaultContainer;
+export default MainLayout;

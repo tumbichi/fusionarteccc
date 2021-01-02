@@ -8,11 +8,11 @@ const UserLayoutDetails = ({ user, back }) => {
         Back
       </button>
       <h1>Details:</h1>
-      <p>id: ${user.id}</p>
-      <p>nombre: ${user.nombre}</p>
-      <p>apellido: ${user.apellido}</p>
-      <p>fechaNacimiento: ${user.fechaNacimiento}</p>
-      <p>email: ${user.email}</p>
+      <p>id: {user.id}</p>
+      <p>nombre: {user.nombre}</p>
+      <p>apellido: {user.apellido}</p>
+      <p>fechaNacimiento: {user.fechaNacimiento}</p>
+      <p>email: {user.email}</p>
     </>
   );
 };

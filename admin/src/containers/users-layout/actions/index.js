@@ -7,6 +7,7 @@ import {
   TYPE_ERROR_FETCH_USERS,
   TYPE_SELECTED_USER,
   TYPE_UNSELECTED_USER,
+  TYPE_CHANGE_INPUT,
 } from './types';
 
 import { getAllUsers } from '../services';
@@ -37,11 +38,15 @@ export const fetchUsers = () => (dispatch) => {
     });
 };
 
-export const selectUser = (user) => ({
+export const selectUser = (payload) => ({
   type: TYPE_SELECTED_USER,
-  payload: user,
+  payload,
 });
 
 export const unselectUser = () => ({ type: TYPE_UNSELECTED_USER });
 
+export const changeInput = (name, value) => ({
+  type: TYPE_CHANGE_INPUT,
+  payload: { name, value },
+});
 export * from './types';

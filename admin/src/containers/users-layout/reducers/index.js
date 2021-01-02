@@ -7,6 +7,7 @@ import {
   TYPE_ERROR_FETCH_USERS,
   TYPE_SELECTED_USER,
   TYPE_UNSELECTED_USER,
+  TYPE_CHANGE_INPUT,
 } from '../actions';
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   status: UserStatus.LOADING,
   error: null,
   selected: null,
+  form: null,
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -38,14 +40,30 @@ const reducer = (state = initialState, { type, payload }) => {
     case TYPE_SELECTED_USER:
       return {
         ...state,
-        status: UserStatus.DETAILS,
-        selected: payload,
+        status: payload.status,
+        selected: payload.user,
+        form:
+          payload.status === UserStatus.EDIT
+            ? {
+                nombre: payload.user.nombre,
+                apellido: payload.user.apellido,
+                email: '',
+              }
+            : {},
       };
     case TYPE_UNSELECTED_USER:
       return {
         ...state,
         status: UserStatus.SUCCESS,
         selected: null,
+      };
+    case TYPE_CHANGE_INPUT:
+      return {
+        ...state,
+        form: {
+          ...state.form,
+          [payload.name]: payload.value,
+        },
       };
     default:
       return state;
