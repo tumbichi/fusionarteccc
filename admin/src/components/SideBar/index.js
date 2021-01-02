@@ -7,7 +7,7 @@ import { SideBarContainer, MenuContainer } from './styles';
 const SideBar = ({ open }) => {
   return (
     <SideBarContainer open={open}>
-      <Link to="/" style={{ textDecoration: 'none' }}>
+      <Link to="/courses" style={{ textDecoration: 'none' }}>
         <MenuContainer open={open}>
           <Book size={24} />
           <p>Cursos</p>

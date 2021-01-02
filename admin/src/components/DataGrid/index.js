@@ -4,7 +4,7 @@ import DataTable from 'react-data-table-component';
 import { Edit2, Trash2 } from 'react-feather';
 import { ActionsWrapper, BtnDelete, BtnEdit } from './styles';
 
-const DataGrid = ({ data, loading, title }) => {
+const DataGrid = ({ data, deleteUser, editUser, loading, title }) => {
   const columns = [
     {
       name: 'ID',
@@ -34,13 +34,21 @@ const DataGrid = ({ data, loading, title }) => {
     },
     {
       name: 'Acciones',
-      cell: () => {
+      cell: (row) => {
         return (
           <ActionsWrapper>
-            <BtnEdit>
+            <BtnEdit
+              onClick={() => {
+                editUser(row);
+              }}
+            >
               <Edit2 size={16} />
             </BtnEdit>
-            <BtnDelete>
+            <BtnDelete
+              onClick={() => {
+                deleteUser(row);
+              }}
+            >
               <Trash2 size={16} />
             </BtnDelete>
           </ActionsWrapper>
@@ -63,12 +71,16 @@ const DataGrid = ({ data, loading, title }) => {
 
 DataGrid.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
+  deleteUser: PropTypes.func,
+  editUser: PropTypes.func,
   loading: PropTypes.bool,
   title: PropTypes.string,
 };
 
 DataGrid.defaultProps = {
   data: [],
+  deleteUser: () => {},
+  editUser: () => {},
   loading: true,
   title: 'Data grid table',
 };

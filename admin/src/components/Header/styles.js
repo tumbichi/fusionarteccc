@@ -45,3 +45,13 @@ export const HeaderContainer = styled.div`
 
   background-color: ${pallette.secondary};
 `;
+
+export const LogoContainer = styled.div`
+  height: 100%;
+  a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+`;

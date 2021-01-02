@@ -1,4 +1,6 @@
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
+import { Link } from 'react-router-dom';
 import { Menu } from 'react-feather';
 import {
   HeaderContainer,
@@ -6,6 +8,7 @@ import {
   TitleAdmin,
   IconContainer,
   IconBackground,
+  LogoContainer,
 } from './styles';
 
 // eslint-disable-next-line react/prop-types
@@ -22,8 +25,12 @@ const Header = ({ open, doCollapse }) => {
           />
         </IconBackground>
       </IconContainer>
-      <TitleFusion>FUSIONARTE</TitleFusion>
-      <TitleAdmin>Admin</TitleAdmin>
+      <LogoContainer>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <TitleFusion>FUSIONARTE</TitleFusion>
+          <TitleAdmin>Admin</TitleAdmin>
+        </Link>
+      </LogoContainer>
     </HeaderContainer>
   );
 };

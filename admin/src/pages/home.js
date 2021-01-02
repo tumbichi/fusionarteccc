@@ -10,7 +10,6 @@ const Home = () => {
     /*  if (!user && !loading) {
       window.location = 'http://localhost:3001/login';
     } else */
-    console.log('useLog', user);
     /* if (user) {
       window.location = 'http://localhost:3001/';
     } */

@@ -46,16 +46,6 @@ export const saveUser = async ({
   return response;
 };
 
-export const getAllUsers = async () => {
-  let snapshot;
-  try {
-    snapshot = await db.ref().child('Usuarios').once('value');
-  } catch (error) {
-    return Promise.reject(error);
-  }
-  return Promise.resolve(parseSnapshotToArray(snapshot));
-};
-
 export const getOneUser = async (id) => {
   let snapshot;
   try {
