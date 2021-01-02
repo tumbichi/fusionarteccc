@@ -3,6 +3,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { ArrowLeft } from 'react-feather';
+import { changeInput } from '../actions';
 import { pallette } from '../../../constants';
 import { InputText, Button } from '../../../components';
 
@@ -15,7 +16,7 @@ const Top = styled.div`
   max-height: 52px;
 
   align-items: center;
-  justify-content: space-between;
+  gap: 16px;
 
   .invisible {
     color: transparent;
@@ -66,6 +67,7 @@ const IconButtonContainer = styled.button`
   background: ghostwhite;
   border: none;
   min-height: 52px;
+
   svg {
     stroke: ${pallette.primary};
   }
@@ -84,7 +86,7 @@ const UserLayoutEdit = ({ user, back }) => {
     apellido: users.form.apellido,
   }));
   const handleInputChange = (name, value) => {
-    dispatch(name, value);
+    dispatch(changeInput(name, value));
   };
   return (
     <Container>

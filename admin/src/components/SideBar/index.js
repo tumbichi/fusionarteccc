@@ -2,9 +2,9 @@
 import React from 'react';
 import { Book, User, Smile } from 'react-feather';
 import { Link } from 'react-router-dom';
-import { SideBarContainer, MenuContainer } from './styles';
+import { SideBarContainer, MenuContainer, OpenArea } from './styles';
 
-const SideBar = ({ open }) => {
+const SideBar = ({ open, doCollapse }) => {
   return (
     <SideBarContainer open={open}>
       <Link to="/courses" style={{ textDecoration: 'none' }}>
@@ -25,6 +25,7 @@ const SideBar = ({ open }) => {
           <p>Alumnos</p>
         </MenuContainer>
       </Link>
+      <OpenArea onClick={doCollapse} />
     </SideBarContainer>
   );
 };

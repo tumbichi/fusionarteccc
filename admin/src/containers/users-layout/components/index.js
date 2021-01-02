@@ -1,5 +1,5 @@
-export { default as UserLayoutLoading } from './UserLayoutLoading';
-export { default as UserLayoutSuccess } from './UserLayoutSuccess';
-export { default as UserLayoutFailure } from './UserLayoutFailure';
-export { default as UserLayoutDetails } from './UserLayoutDetails';
-export { default as UserLayoutEdit } from './UserLayoutEdit';
+export { default as UsersLayoutLoading } from './UsersLayoutLoading';
+export { default as UsersLayoutSuccess } from './UsersLayoutSuccess';
+export { default as UsersLayoutFailure } from './UsersLayoutFailure';
+export { default as UsersLayoutDetails } from './UsersLayoutDetails';
+export { default as UsersLayoutEdit } from './UsersLayoutEdit';

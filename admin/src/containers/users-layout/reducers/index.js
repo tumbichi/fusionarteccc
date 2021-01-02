@@ -49,7 +49,7 @@ const reducer = (state = initialState, { type, payload }) => {
                 apellido: payload.user.apellido,
                 email: '',
               }
-            : {},
+            : null,
       };
     case TYPE_UNSELECTED_USER:
       return {
