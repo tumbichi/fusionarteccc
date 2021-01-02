@@ -2,8 +2,8 @@
 import React from 'react';
 import DataGrid from '../../../components/DataGrid';
 
-const CoursesLayoutSuccess = ({
-  courses,
+const UserLayoutSuccess = ({
+  data,
   onClickEdit,
   onClickDelete,
   onClickDetails,
@@ -15,37 +15,38 @@ const CoursesLayoutSuccess = ({
       hide: 'md',
     },
     {
-      name: 'Titulo',
-      selector: 'titulo',
+      name: 'Nombre',
+      selector: 'nombre',
       sortable: true,
     },
     {
-      name: 'Duracion',
-      selector: 'duracion',
+      name: 'Apellido',
+      selector: 'apellido',
+      sortable: true,
+      hide: 'sm',
+    },
+    {
+      name: 'Email',
+      selector: 'email',
       sortable: true,
     },
     {
-      name: 'Fecha de Creacion',
-      selector: 'fechaCreacion',
-      sortable: true,
-    },
-    {
-      name: 'Precio',
-      selector: 'precio',
+      name: 'Fecha de Nacimiento',
+      selector: 'fechaNacimiento',
       sortable: true,
     },
   ];
 
   return (
     <DataGrid
-      title="Cursos"
-      data={courses}
+      title="Usuarios"
+      data={data}
       columns={columns}
-      detailsUser={onClickDetails}
       editUser={onClickEdit}
       deleteUser={onClickDelete}
+      detailsUser={onClickDetails}
     />
   );
 };
 
-export default CoursesLayoutSuccess;
+export default UserLayoutSuccess;

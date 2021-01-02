@@ -6,11 +6,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { UserStatus } from './models/status';
 import { fetchUsers, selectUser, unselectUser } from './actions';
 import {
-  UserLayoutLoading,
-  UserLayoutSuccess,
-  UserLayoutFailure,
-  UserLayoutDetails,
-  UserLayoutEdit,
+  UsersLayoutLoading,
+  UsersLayoutSuccess,
+  UsersLayoutFailure,
+  UsersLayoutDetails,
+  UsersLayoutEdit,
 } from './components';
 
 const UsersLayout = () => {
@@ -44,10 +44,10 @@ const UsersLayout = () => {
   // eslint-disable-next-line default-case
   switch (status) {
     case UserStatus.LOADING:
-      return <UserLayoutLoading />;
+      return <UsersLayoutLoading />;
     case UserStatus.SUCCESS:
       return (
-        <UserLayoutSuccess
+        <UsersLayoutSuccess
           data={data}
           onClickEdit={handleEditUser}
           onClickDelete={handleDeleteUser}
@@ -55,12 +55,12 @@ const UsersLayout = () => {
         />
       );
     case UserStatus.FAILURE:
-      return <UserLayoutFailure />;
+      return <UsersLayoutFailure />;
     case UserStatus.EDIT:
-      return <UserLayoutEdit user={selectedUser} back={handleBackToDetails} />;
+      return <UsersLayoutEdit user={selectedUser} back={handleBackToDetails} />;
     case UserStatus.DETAILS:
       return (
-        <UserLayoutDetails user={selectedUser} back={handleBackToDetails} />
+        <UsersLayoutDetails user={selectedUser} back={handleBackToDetails} />
       );
     default:
       return <></>;

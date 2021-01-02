@@ -14,6 +14,10 @@ export const SideBarContainer = styled.div`
   padding: 12px 0;
 `;
 
+export const OpenArea = styled.div`
+  height: 100%;
+`;
+
 export const MenuContainer = styled.li`
   min-height: 52px;
   width: 100%;
