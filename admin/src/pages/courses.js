@@ -1,7 +1,8 @@
 import React from 'react';
+import CoursesLayout from '../containers/courses-layout';
 
 const Courses = () => {
-  return <div>Cursos</div>;
+  return <CoursesLayout />;
 };
 
 export default Courses;
