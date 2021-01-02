@@ -15,8 +15,18 @@
     "react/react-in-jsx-scope": "off",
     "import/export": "off",
     "import/prefer-default-export": "off",
-    "jsx-a11y/href-no-hash": ["off"],
-    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
+    "jsx-a11y/href-no-hash": [
+      "off"
+    ],
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
     "max-len": [
       "warn",
       {
@@ -31,9 +41,11 @@
         "ignoreRegExpLiterals": true
       }
     ],
-    "prettier/prettier": ["error", {
-      "endOfLine":"auto"
-    }]
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
   }
-  
 }

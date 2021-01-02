@@ -92,8 +92,8 @@ const UserLayoutEdit = ({ user, back }) => {
         <IconButtonContainer onClick={back}>
           <ArrowLeft size={24} />
         </IconButtonContainer>
-        <p>Editar usuario </p>
-        <p className="invisible">-</p>
+        <p> Editar usuario </p>
+        <p className="invisible"> - </p>
       </Top>
       <Content>
         <LeftContent>
