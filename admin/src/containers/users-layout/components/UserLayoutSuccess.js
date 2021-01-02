@@ -2,14 +2,19 @@
 import React from 'react';
 import DataGrid from '../../../components/DataGrid';
 
-const UserLayoutSuccess = ({ data, loading, onClickEdit, onClickDelete }) => {
+const UserLayoutSuccess = ({
+  data,
+  onClickEdit,
+  onClickDelete,
+  onClickDetails,
+}) => {
   return (
     <DataGrid
       title="Usuarios"
       data={data}
-      loading={loading}
       editUser={onClickEdit}
       deleteUser={onClickDelete}
+      detailsUser={onClickDetails}
     />
   );
 };

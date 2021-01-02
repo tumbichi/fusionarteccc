@@ -6,17 +6,14 @@ export const Container = styled.div`
   width: 100%;
 `;
 
-export const HorizontalFlex = styled.div`
-  display: flex;
-`;
-
 export const ContentWrapper = styled.div`
+  height: calc(100% - 40px);
   width: ${({ open }) => (open ? 'calc(100% - 190px)' : 'calc(100% - 64px)')};
   padding: 12px;
 `;
 
 export const MainContent = styled.div`
   display: flex;
-  height: calc(100% - 44px);
+  height: calc(100% - 68px);
   align-items: flex-start;
 `;

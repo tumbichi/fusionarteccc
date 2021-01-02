@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import DataTable from 'react-data-table-component';
-import { Edit2, Trash2 } from 'react-feather';
-import { ActionsWrapper, BtnDelete, BtnEdit } from './styles';
+import { Edit2, Trash2, Eye } from 'react-feather';
+import { ActionsWrapper, IconButtonContainer } from './styles';
 
-const DataGrid = ({ data, deleteUser, editUser, loading, title }) => {
+const DataGrid = ({ data, deleteUser, editUser, detailsUser, title }) => {
   const columns = [
     {
       name: 'ID',
@@ -28,7 +28,7 @@ const DataGrid = ({ data, deleteUser, editUser, loading, title }) => {
       sortable: true,
     },
     {
-      name: 'Fecha Nacimiento',
+      name: 'Fecha de Nacimiento',
       selector: 'fechaNacimiento',
       sortable: true,
     },
@@ -37,20 +37,27 @@ const DataGrid = ({ data, deleteUser, editUser, loading, title }) => {
       cell: (row) => {
         return (
           <ActionsWrapper>
-            <BtnEdit
+            <IconButtonContainer
+              onClick={() => {
+                detailsUser(row);
+              }}
+            >
+              <Eye size={16} />
+            </IconButtonContainer>
+            <IconButtonContainer
               onClick={() => {
                 editUser(row);
               }}
             >
               <Edit2 size={16} />
-            </BtnEdit>
-            <BtnDelete
+            </IconButtonContainer>
+            <IconButtonContainer
               onClick={() => {
                 deleteUser(row);
               }}
             >
               <Trash2 size={16} />
-            </BtnDelete>
+            </IconButtonContainer>
           </ActionsWrapper>
         );
       },
@@ -62,7 +69,6 @@ const DataGrid = ({ data, deleteUser, editUser, loading, title }) => {
       columns={columns}
       data={data}
       title={title}
-      progressPending={loading}
       responsive
       pagination
     />
@@ -73,7 +79,7 @@ DataGrid.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
   deleteUser: PropTypes.func,
   editUser: PropTypes.func,
-  loading: PropTypes.bool,
+  detailsUser: PropTypes.func,
   title: PropTypes.string,
 };
 
@@ -81,7 +87,7 @@ DataGrid.defaultProps = {
   data: [],
   deleteUser: () => {},
   editUser: () => {},
-  loading: true,
+  detailsUser: () => {},
   title: 'Data grid table',
 };
 
