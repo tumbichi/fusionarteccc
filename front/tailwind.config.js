@@ -1,6 +1,6 @@
 // tailwind.config.js
 module.exports = {
-  purge: ['./**/*.tsx'],
+  purge: ['./**/*.js'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     letterSpacing: {
