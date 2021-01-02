@@ -1,23 +1,7 @@
 import styled from 'styled-components';
 import { pallette } from '../../constants';
 
-export const BtnEdit = styled.button`
-  cursor: pointer;
-  background: ghostwhite;
-  border-radius: 360px;
-  padding: 8px;
-  border: none;
-  svg {
-    stroke: ${pallette.primary};
-  }
-  :hover {
-    background: ${pallette.primary};
-    svg {
-      stroke: ghostwhite;
-    }
-  }
-`;
-export const BtnDelete = styled.button`
+export const IconButtonContainer = styled.button`
   cursor: pointer;
   padding: 8px;
   background: ghostwhite;
@@ -34,6 +18,7 @@ export const BtnDelete = styled.button`
     }
   }
 `;
+
 export const ActionsWrapper = styled.div`
   display: flex;
   gap: 6px;

@@ -3,4 +3,5 @@ export enum UserStatus {
   SUCCESS,
   FAILURE,
   DETAILS,
+  EDIT,
 }
