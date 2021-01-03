@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import MainLayout from './containers/main-layout';
 import GlobalStyles from './global-styles';
 import HomePage from './pages/home';
