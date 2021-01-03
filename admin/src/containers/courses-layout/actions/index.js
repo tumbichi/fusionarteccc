@@ -5,8 +5,9 @@ import {
   TYPE_LOADING_FETCH_COURSES,
   TYPE_SUCCESS_FETCH_COURSES,
   TYPE_ERROR_FETCH_COURSES,
-  TYPE_DETAILS_COURSE,
+  TYPE_SELECT_COURSE,
   TYPE_CHANGE_INPUT,
+  TYPE_UNSELECT_COURSE,
 } from './types';
 
 import { getAllCourses } from '../services';
@@ -38,8 +39,12 @@ export const fetchCourses = () => (dispatch) => {
 };
 
 export const selectCourse = (payload) => ({
-  type: TYPE_DETAILS_COURSE,
+  type: TYPE_SELECT_COURSE,
   payload,
+});
+
+export const unselectCourse = () => ({
+  type: TYPE_UNSELECT_COURSE,
 });
 
 export const changeInput = (name, value) => ({

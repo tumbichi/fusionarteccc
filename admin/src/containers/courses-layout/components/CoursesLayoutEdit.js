@@ -77,14 +77,14 @@ const IconButtonContainer = styled.button`
   }
 `;
 
-const CoursesLayoutEdit = ({ course, back, onChangeInput }) => {
+const CoursesLayoutEdit = ({ course, onBack, onChangeInput }) => {
   return (
     <Container>
       <Top>
-        <IconButtonContainer onClick={back}>
+        <IconButtonContainer onClick={onBack}>
           <ArrowLeft size={24} />
         </IconButtonContainer>
-        <p> Editar usuario </p>
+        <p> Editar Curso </p>
         <p className="invisible"> - </p>
       </Top>
       <Content>
@@ -96,7 +96,7 @@ const CoursesLayoutEdit = ({ course, back, onChangeInput }) => {
                 name="tituloCurso"
                 onChange={onChangeInput}
                 placeholder="Titulo Curso"
-                value={course.tituloCurso}
+                value={course.titulo}
               />
               <InputText
                 width="100%"
@@ -119,7 +119,7 @@ const CoursesLayoutEdit = ({ course, back, onChangeInput }) => {
           </Form>
         </LeftContent>
         <RightContent>
-          <p>Titulo Curso: {course.tituloCurso}</p>
+          <p>Titulo Curso: {course.titulo}</p>
           <p>Duracion: {course.duracion}</p>
           <p>Precio: {course.precio}</p>
         </RightContent>
