@@ -5,7 +5,12 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CourseStatus } from './models/status';
-import { fetchCourses, selectCourse, changeInput } from './actions';
+import {
+  fetchCourses,
+  selectCourse,
+  changeInput,
+  unselectCourse,
+} from './actions';
 import {
   CoursesLayoutLoading,
   CoursesLayoutSuccess,
@@ -29,10 +34,19 @@ const CoursesLayout = () => {
   const handleEditCourse = (course) => {
     dispatch(selectCourse({ course, status: CourseStatus.EDIT }));
   };
-  const handleDetailsCourse = (course) => {};
-  const handleDeleteCourse = (course) => {};
+
+  const handleDetailsCourse = (course) => {
+    dispatch(selectCourse({ course, status: CourseStatus.DETAILS }));
+  };
+
   const handleInputChange = (name, value) => {
     dispatch(changeInput(name, value));
+  };
+
+  const handleDeleteCourse = (course) => {};
+
+  const handleBackToCourses = () => {
+    dispatch(unselectCourse());
   };
 
   switch (status) {
@@ -56,11 +70,18 @@ const CoursesLayout = () => {
       return (
         <CoursesLayoutEdit
           course={selectedCourse}
+          onBack={handleBackToCourses}
           onChangeInput={handleInputChange}
         />
       );
     case CourseStatus.DETAILS:
-      return <CoursesLayoutDetails />;
+      return (
+        <CoursesLayoutDetails
+          course={selectedCourse}
+          onBack={handleBackToCourses}
+          onChangeInput={handleInputChange}
+        />
+      );
     default:
       return <></>;
   }
