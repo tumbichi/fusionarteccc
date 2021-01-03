@@ -3,11 +3,12 @@ import { registerUser } from '../../services';
 import { FlexContainer as Container, FormContainer, FlexRowContainer as FlexRow } from '../../layouts';
 import InputText from '../../components/InputText';
 import Button from '../../components/Button';
+import Modal from '../../components/Modal';
 import { getMessageError, isEmailError, isPasswordError } from '../../utils';
 import AlertWarningLabel from '../../components/Labels/AlertWarningLabel';
 
 // eslint-disable-next-line react/prop-types
-const RegisterLayout = ({ goToHome }) => {
+const RegisterLayout = ({ goToLogin }) => {
   const [email, setEmail] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
   const [password2, setPassword2] = useState({ value: '', error: '' });
@@ -15,7 +16,7 @@ const RegisterLayout = ({ goToHome }) => {
   const [apellido, setApellido] = useState({ value: '', error: '' });
   const [fechaNacimiento, setFechaNacimiento] = useState({ value: '', error: '' });
   const [serviceError, setServiceError] = useState('');
-
+  const [modalState, setModalState] = useState(false);
   const handleInputTextChange = useCallback(
     ({ target }) => {
       const { name, value } = target;
@@ -159,7 +160,7 @@ const RegisterLayout = ({ goToHome }) => {
       })
         .then((user) => {
           console.log('Usuario creado', user);
-          goToHome();
+          setModalState(true);
         })
         .catch((error) => {
           handleErrorsAuth(error.code);
@@ -167,7 +168,6 @@ const RegisterLayout = ({ goToHome }) => {
         });
     }
   }, [email, password, password2, nombre, apellido, fechaNacimiento]);
-
   return (
     <Container>
       <FormContainer>
@@ -230,6 +230,15 @@ const RegisterLayout = ({ goToHome }) => {
         />
         <Button text="Registrate" color="secondary" onClick={handleRegister} />
       </FormContainer>
+      <Modal width="w-125" show={modalState} onClose={() => setModalState(false)}>
+        <div className="flex flex-col items-center justify-center w-full space-y-6">
+          <h1 className="text-center text-grray-760 pb-3 pt-1 font-semibold">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque pariatur autem, facere possimus laboriosam
+            tempora animi voluptate.
+          </h1>
+          <Button text="Iniciar sesión" width="w-full" className="" type="button" onClick={goToLogin} />
+        </div>
+      </Modal>
     </Container>
   );
 };
