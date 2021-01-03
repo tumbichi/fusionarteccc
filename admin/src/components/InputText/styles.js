@@ -5,6 +5,8 @@ export const Wrapper = styled.input`
   width: ${({ width }) => width};
   min-width: 260px;
   max-width: 262px;
+  border-radius: 4px;
+  border: 0;
 
-  padding: 0.3rem;
+  padding: 0.7rem;
 `;
