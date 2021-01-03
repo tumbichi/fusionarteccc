@@ -1,15 +1,18 @@
+/* eslint-disable no-const-assign */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/named */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { CourseStatus } from './models/status';
 import {
   fetchCourses,
   selectCourse,
   changeInput,
   unselectCourse,
+  createCourse,
 } from './actions';
 import {
   CoursesLayoutLoading,
@@ -17,10 +20,13 @@ import {
   CoursesLayoutFailure,
   CoursesLayoutEdit,
   CoursesLayoutDetails,
+  CoursesLayoutCreate,
 } from './components';
 
 const CoursesLayout = () => {
   const dispatch = useDispatch();
+  const router = useHistory();
+
   const { selectedCourse, status, data } = useSelector(({ courses }) => ({
     status: courses.status,
     data: courses.data,
@@ -49,6 +55,10 @@ const CoursesLayout = () => {
     dispatch(unselectCourse());
   };
 
+  const handleToCreateCourse = () => {
+    router.push('/create-course');
+  };
+
   switch (status) {
     case CourseStatus.LOADING:
       return <CoursesLayoutLoading />;
@@ -57,6 +67,7 @@ const CoursesLayout = () => {
         <CoursesLayoutSuccess
           courses={data}
           loading={false}
+          onClickCreate={handleToCreateCourse}
           onClickDelete={(row) => {
             console.log(`delete user: ${row.id}`);
           }}

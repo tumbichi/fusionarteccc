@@ -1,9 +1,11 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import DataGrid from '../../../components/DataGrid';
 
 const CoursesLayoutSuccess = ({
   courses,
+  onClickCreate,
   onClickEdit,
   onClickDelete,
   onClickDetails,
@@ -37,14 +39,17 @@ const CoursesLayoutSuccess = ({
   ];
 
   return (
-    <DataGrid
-      title="Cursos"
-      data={courses}
-      columns={columns}
-      detailsUser={onClickDetails}
-      editUser={onClickEdit}
-      deleteUser={onClickDelete}
-    />
+    <>
+      <button onClick={onClickCreate}>CREAR CURSO</button>
+      <DataGrid
+        title="Cursos"
+        data={courses}
+        columns={columns}
+        detailsUser={onClickDetails}
+        editUser={onClickEdit}
+        deleteUser={onClickDelete}
+      />
+    </>
   );
 };
 

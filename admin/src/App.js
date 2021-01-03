@@ -7,6 +7,7 @@ import HomePage from './pages/home';
 import LoginPage from './pages/login';
 import UsersPage from './pages/users';
 import CoursesPage from './pages/courses';
+import CoursesPageCreate from './pages/create-course';
 
 import store from './store';
 
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route exact path="/courses">
             <CoursesPage />
+          </Route>
+          <Route exact path="/create-course">
+            <CoursesPageCreate />
           </Route>
         </MainLayout>
       </Router>
