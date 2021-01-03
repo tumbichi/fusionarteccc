@@ -19,6 +19,8 @@ export const isEmailError = (errorCode) => {
       return true;
     case 'auth/user-not-found':
       return true;
+    case 'auth/email-already-in-use':
+      return true;
     default:
       return false;
   }

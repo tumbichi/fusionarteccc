@@ -4,6 +4,9 @@ import { db } from './firebase';
 // eslint-disable-next-line import/prefer-default-export
 export const saveUser = async ({ id, email, nombre, apellido, fechaNacimiento }) => {
   let response;
+  let fechaCreacion;
+  let rolId;
+  const ID_ROL_ALUMNOS = 2;
 
   /* const userId = db.ref().child('Usuarios').push().key; */
   // eslint-disable-next-line no-useless-catch
@@ -12,11 +15,13 @@ export const saveUser = async ({ id, email, nombre, apellido, fechaNacimiento })
     .child(id)
     .set(
       {
+        id,
         email,
         nombre,
         apellido,
         fechaNacimiento,
-        fechaCreacion: new Date(),
+        fechaCreacion: new Date().toISOString(),
+        rolId: ID_ROL_ALUMNOS,
       },
       (error) => {
         if (error) {
@@ -34,6 +39,8 @@ export const saveUser = async ({ id, email, nombre, apellido, fechaNacimiento })
       nombre,
       apellido,
       fechaNacimiento,
+      fechaCreacion,
+      rolId,
     };
   }
 
