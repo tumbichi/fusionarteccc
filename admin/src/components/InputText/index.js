@@ -3,21 +3,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Wrapper } from './styles';
 
-const InputText = ({ height, onChange, placeholder, value, type, width }) => {
+const InputText = ({
+  disabled,
+  height,
+  name,
+  onChange,
+  placeholder,
+  type,
+  value,
+  width,
+}) => {
   return (
     <Wrapper
+      disabled={disabled}
       height={height}
+      name={name}
       onChange={onChange}
       placeholder={placeholder}
-      value={value}
       type={type}
+      value={value}
       width={width}
     />
   );
 };
 
 InputText.propTypes = {
+  disabled: PropTypes.bool,
   height: PropTypes.string,
+  name: PropTypes.string,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   value: PropTypes.string,
@@ -26,7 +39,9 @@ InputText.propTypes = {
 };
 
 InputText.defaultProps = {
+  disabled: false,
   height: 'auto',
+  name: '',
   onChange: () => {},
   placeholder: '',
   value: '',

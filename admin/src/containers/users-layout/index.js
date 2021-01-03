@@ -4,7 +4,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { UserStatus } from './models/status';
-import { changeInput, fetchUsers, selectUser, unselectUser } from './actions';
+import {
+  changeInput,
+  fetchUsers,
+  requestEditUser,
+  selectUser,
+  unselectUser,
+} from './actions';
 import { fetchRoles } from '../../core/SelectRole/actions';
 import {
   UsersLayoutLoading,
@@ -16,14 +22,16 @@ import {
 
 const UsersLayout = () => {
   const dispatch = useDispatch();
-  const { status, data, selectedUser, roles, formData } = useSelector(
+  const { status, data, selectedUser, roles, formData, saving } = useSelector(
     (state) => {
+      console.log(state);
       return {
         status: state.users.status,
         data: state.users.data,
         selectedUser: state.users.selected,
         roles: state.roles.data,
         formData: state.users.form,
+        saving: state.users.saving,
       };
     }
   );
@@ -48,16 +56,23 @@ const UsersLayout = () => {
     dispatch(unselectUser());
   };
 
-  const handleInputChange = (name, value) => {
+  const handleInputChange = ({ target }) => {
+    const { name, value } = target;
+
     dispatch(changeInput(name, value));
   };
 
-  const handleSelectChange = ({ value }, { name }) => {
+  const handleDropdownChange = ({ value }, { name }) => {
     dispatch(changeInput(name, value));
   };
 
   const handleRequestRoles = () => {
     dispatch(fetchRoles());
+  };
+
+  const handleEditSubmit = (event) => {
+    event.preventDefault();
+    dispatch(requestEditUser(selectedUser.id, formData));
   };
 
   // eslint-disable-next-line default-case
@@ -78,12 +93,14 @@ const UsersLayout = () => {
     case UserStatus.EDIT:
       return (
         <UsersLayoutEdit
-          user={selectedUser}
-          formData={formData}
-          roles={roles}
           back={handleBackToDetails}
+          formData={formData}
+          onChangeDropdown={handleDropdownChange}
           onChangeInput={handleInputChange}
-          onChangeDropdown={handleSelectChange}
+          onSubmit={handleEditSubmit}
+          roles={roles}
+          saving={saving}
+          user={selectedUser}
         />
       );
     case UserStatus.DETAILS:

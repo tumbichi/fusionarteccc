@@ -98,8 +98,10 @@ const UserLayoutEdit = ({
   formData,
   onChangeDropdown,
   onChangeInput,
+  onSubmit,
   user,
   roles,
+  saving,
 }) => {
   return (
     <Container>
@@ -111,41 +113,46 @@ const UserLayoutEdit = ({
         <p className="invisible"> - </p>
       </Top>
       <Content>
-        <LeftContent>
-          <Form>
-            <FormContent>
-              <InputText
-                width="100%"
-                name="nombre"
-                onChange={onChangeInput}
-                placeholder="Nombre"
-                value={formData.nombre}
-              />
-              <InputText
-                width="100%"
-                name="apellido"
-                onChange={onChangeInput}
-                placeholder="Apellido"
-                value={formData.apellido}
-              />
-              <InputText
-                width="100%"
-                name="email"
-                onChange={onChangeInput}
-                placeholder="Email"
-                value={formData.email}
-              />
-              <RolesDropdown
-                name="rolId"
-                value={formData.rolId}
-                onChange={onChangeDropdown}
-              />
-            </FormContent>
-            <FormActions>
-              <Button width="100%" text="Editar usuario" />
-            </FormActions>
-          </Form>
-        </LeftContent>
+        {saving ? (
+          <p>is saving bro</p>
+        ) : (
+          <LeftContent>
+            <Form onSubmit={onSubmit}>
+              <FormContent>
+                <InputText
+                  width="100%"
+                  name="nombre"
+                  onChange={onChangeInput}
+                  placeholder="Nombre"
+                  value={formData.nombre}
+                />
+                <InputText
+                  width="100%"
+                  name="apellido"
+                  onChange={onChangeInput}
+                  placeholder="Apellido"
+                  value={formData.apellido}
+                />
+                <InputText
+                  width="100%"
+                  name="email"
+                  onChange={onChangeInput}
+                  placeholder="Email"
+                  value={formData.email}
+                  disabled
+                />
+                <RolesDropdown
+                  name="rolId"
+                  value={formData.rolId}
+                  onChange={onChangeDropdown}
+                />
+              </FormContent>
+              <FormActions>
+                <Button type="submit" width="100%" text="Editar usuario" />
+              </FormActions>
+            </Form>
+          </LeftContent>
+        )}
         <RightContent>
           <p>id: {user.id}</p>
           <p>nombre: {user.nombre}</p>
@@ -153,7 +160,9 @@ const UserLayoutEdit = ({
           <p>fechaNacimiento: {user.fechaNacimiento}</p>
           <p>fecha de creacion: {user.fechaCreacion}</p>
           <p>email: {user.email}</p>
-          <p>rol: {roles.find((rol) => user.rolId === rol.id).descripcion}</p>
+          {roles.length === 0 ? null : (
+            <p>rol: {roles.find((rol) => user.rolId === rol.id).descripcion}</p>
+          )}
         </RightContent>
       </Content>
     </Container>

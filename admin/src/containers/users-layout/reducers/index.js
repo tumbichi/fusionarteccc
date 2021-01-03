@@ -8,6 +8,8 @@ import {
   TYPE_SELECTED_USER,
   TYPE_UNSELECTED_USER,
   TYPE_CHANGE_INPUT,
+  TYPE_ON_SAVING,
+  TYPE_UPDATE_USER,
 } from '../actions';
 
 const initialState = {
@@ -16,6 +18,7 @@ const initialState = {
   error: null,
   selected: null,
   form: null,
+  saving: false,
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -66,6 +69,26 @@ const reducer = (state = initialState, { type, payload }) => {
           [payload.name]: payload.value,
         },
       };
+    case TYPE_ON_SAVING:
+      return {
+        ...state,
+        saving: payload,
+      };
+    case TYPE_UPDATE_USER: {
+      let i;
+      const currentUser = state.data.find((user, index) => {
+        if (user.id === payload.id) {
+          i = index;
+        }
+        return user.id === payload.id;
+      });
+      const newData = state.data;
+      newData[i] = { ...currentUser, ...payload.userData };
+      return {
+        ...state,
+        data: newData,
+      };
+    }
     default:
       return state;
   }
