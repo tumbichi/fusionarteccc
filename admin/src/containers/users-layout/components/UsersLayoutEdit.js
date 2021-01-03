@@ -37,36 +37,48 @@ const Content = styled.div`
 `;
 
 const LeftContent = styled.div`
-  background-color: blanchedalmond;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 `;
 
 const RightContent = styled.div`
-  background-color: azure;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 `;
 
 const Form = styled.form`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  gap: 20px;
   align-content: center;
   align-items: center;
-  padding: 0rem 72px;
+  padding: 32px 64px;
 `;
 
 const FormContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 6px;
+  gap: 12px;
 `;
 
-const FormActions = styled.div``;
+const FormActions = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 1;
+`;
 
 const IconButtonContainer = styled.button`
   cursor: pointer;
   padding: 12px 16px;
-  background: ghostwhite;
+  background: #ffffff;
   border: none;
   min-height: 52px;
 
@@ -81,16 +93,14 @@ const IconButtonContainer = styled.button`
   }
 `;
 
-const UserLayoutEdit = ({ user, back }) => {
-  const dispatch = useDispatch();
-  const { nombre, apellido, email } = useSelector(({ users }) => ({
-    nombre: users.form.nombre,
-    apellido: users.form.apellido,
-  }));
-
-  const handleInputChange = (name, value) => {
-    dispatch(changeInput(name, value));
-  };
+const UserLayoutEdit = ({
+  back,
+  formData,
+  onChangeDropdown,
+  onChangeInput,
+  user,
+  roles,
+}) => {
   return (
     <Container>
       <Top>
@@ -107,25 +117,29 @@ const UserLayoutEdit = ({ user, back }) => {
               <InputText
                 width="100%"
                 name="nombre"
-                onChange={handleInputChange}
+                onChange={onChangeInput}
                 placeholder="Nombre"
-                value={nombre}
+                value={formData.nombre}
               />
               <InputText
                 width="100%"
                 name="apellido"
-                onChange={handleInputChange}
+                onChange={onChangeInput}
                 placeholder="Apellido"
-                value={apellido}
+                value={formData.apellido}
               />
               <InputText
                 width="100%"
                 name="email"
-                onChange={handleInputChange}
+                onChange={onChangeInput}
                 placeholder="Email"
-                value={email}
+                value={formData.email}
               />
-              <RolesDropdown />
+              <RolesDropdown
+                name="rolId"
+                value={formData.rolId}
+                onChange={onChangeDropdown}
+              />
             </FormContent>
             <FormActions>
               <Button width="100%" text="Editar usuario" />
@@ -137,7 +151,9 @@ const UserLayoutEdit = ({ user, back }) => {
           <p>nombre: {user.nombre}</p>
           <p>apellido: {user.apellido}</p>
           <p>fechaNacimiento: {user.fechaNacimiento}</p>
+          <p>fecha de creacion: {user.fechaCreacion}</p>
           <p>email: {user.email}</p>
+          <p>rol: {roles.find((rol) => user.rolId === rol.id).descripcion}</p>
         </RightContent>
       </Content>
     </Container>

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
@@ -7,34 +8,33 @@ import Dropdown from '../../components/Dropdown';
 import { fetchRoles, selectRole } from './actions';
 import { RoleStatus } from './reducer';
 
-const SelectRole = () => {
+const SelectRole = ({ name, onChange, value }) => {
   const dispatch = useDispatch();
-  const { options, selectedRole, status } = useSelector(({ roles }) => ({
-    options: roles.options,
+  const { data, status } = useSelector(({ roles }) => ({
+    data: roles.data,
     status: roles.status,
     selectedRole: roles.selected,
   }));
 
   useEffect(() => {
-    dispatch(fetchRoles());
+    if (data.length === 0) {
+      dispatch(fetchRoles());
+    }
   }, []);
 
-  const handleRoleChange = (option) => {
-    dispatch(selectRole(option));
-  };
+  const options = data.map(({ id, descripcion }) => ({
+    value: id,
+    label: descripcion,
+  }));
 
-  console.log('options', options, status);
   return (
     <Dropdown
-      name="role"
+      name={name}
       placeholder="Rol"
       loading={status === RoleStatus.LOADING}
-      options={options.map(({ id, descripcion }) => ({
-        value: id,
-        label: descripcion,
-      }))}
-      value={selectedRole}
-      onChange={handleRoleChange}
+      options={options}
+      value={options.find((option) => option.value === value)}
+      onChange={onChange}
     />
   );
 };

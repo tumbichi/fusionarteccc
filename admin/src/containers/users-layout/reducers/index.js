@@ -47,7 +47,8 @@ const reducer = (state = initialState, { type, payload }) => {
             ? {
                 nombre: payload.user.nombre,
                 apellido: payload.user.apellido,
-                email: '',
+                email: payload.user.email,
+                rolId: payload.user.rolId,
               }
             : null,
       };
