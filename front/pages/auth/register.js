@@ -6,13 +6,13 @@ import ToolbarContainer from '../../containers/toolbar-layout';
 const Register = () => {
   const router = useRouter();
 
-  const goToHome = () => {
-    router.push(`/`);
+  const goToLogin = () => {
+    router.push(`/auth/login`);
   };
   return (
     <>
       <ToolbarContainer /> {/* temporal */}
-      <RegisterContainer goToHome={goToHome} />
+      <RegisterContainer goToLogin={goToLogin} />
     </>
   );
 };
