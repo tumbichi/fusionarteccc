@@ -8,6 +8,8 @@ import {
   TYPE_SUCCESS_FETCH_COURSES,
   TYPE_DETAILS_COURSE,
   TYPE_EDIT_COURSE,
+  TYPE_SELECT_COURSE,
+  TYPE_UNSELECT_COURSE,
 } from '../actions';
 
 const initialState = {
@@ -48,6 +50,18 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         status: payload.status,
         select: payload.course,
+      };
+    case TYPE_SELECT_COURSE:
+      return {
+        ...state,
+        status: payload.status,
+        selected: payload.course,
+      };
+    case TYPE_UNSELECT_COURSE:
+      return {
+        ...state,
+        status: CourseStatus.SUCCESS,
+        selected: null,
       };
     default:
       return state;
