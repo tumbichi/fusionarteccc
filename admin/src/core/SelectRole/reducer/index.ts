@@ -1,7 +1,3 @@
-/* eslint-disable import/named */
-/* eslint-disable no-undef */
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-unresolved */
 import {
   TYPE_FETCH_ROLES_SUCCESS,
   TYPE_FETCH_ROLES_FAILURE,
@@ -16,7 +12,7 @@ export enum RoleStatus {
 }
 
 const initialState = {
-  options: [],
+  data: [],
   status: RoleStatus.LOADING,
   error: null,
   selected: null,
@@ -27,7 +23,7 @@ const reducer = (state = initialState, { type, payload }: any) => {
     case TYPE_FETCH_ROLES_SUCCESS:
       return {
         ...state,
-        options: payload,
+        data: payload,
         status: RoleStatus.SUCCESS,
       };
     case TYPE_FETCH_ROLES_FAILURE:

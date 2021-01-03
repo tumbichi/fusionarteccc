@@ -4,7 +4,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { UserStatus } from './models/status';
-import { fetchUsers, selectUser, unselectUser } from './actions';
+import { changeInput, fetchUsers, selectUser, unselectUser } from './actions';
+import { fetchRoles } from '../../core/SelectRole/actions';
 import {
   UsersLayoutLoading,
   UsersLayoutSuccess,
@@ -15,11 +16,17 @@ import {
 
 const UsersLayout = () => {
   const dispatch = useDispatch();
-  const { status, data, selectedUser } = useSelector(({ users }) => ({
-    status: users.status,
-    data: users.data,
-    selectedUser: users.selected,
-  }));
+  const { status, data, selectedUser, roles, formData } = useSelector(
+    (state) => {
+      return {
+        status: state.users.status,
+        data: state.users.data,
+        selectedUser: state.users.selected,
+        roles: state.roles.data,
+        formData: state.users.form,
+      };
+    }
+  );
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -41,6 +48,18 @@ const UsersLayout = () => {
     dispatch(unselectUser());
   };
 
+  const handleInputChange = (name, value) => {
+    dispatch(changeInput(name, value));
+  };
+
+  const handleSelectChange = ({ value }, { name }) => {
+    dispatch(changeInput(name, value));
+  };
+
+  const handleRequestRoles = () => {
+    dispatch(fetchRoles());
+  };
+
   // eslint-disable-next-line default-case
   switch (status) {
     case UserStatus.LOADING:
@@ -57,10 +76,24 @@ const UsersLayout = () => {
     case UserStatus.FAILURE:
       return <UsersLayoutFailure />;
     case UserStatus.EDIT:
-      return <UsersLayoutEdit user={selectedUser} back={handleBackToDetails} />;
+      return (
+        <UsersLayoutEdit
+          user={selectedUser}
+          formData={formData}
+          roles={roles}
+          back={handleBackToDetails}
+          onChangeInput={handleInputChange}
+          onChangeDropdown={handleSelectChange}
+        />
+      );
     case UserStatus.DETAILS:
       return (
-        <UsersLayoutDetails user={selectedUser} back={handleBackToDetails} />
+        <UsersLayoutDetails
+          user={selectedUser}
+          roles={roles}
+          requestRoles={handleRequestRoles}
+          back={handleBackToDetails}
+        />
       );
     default:
       return <></>;
