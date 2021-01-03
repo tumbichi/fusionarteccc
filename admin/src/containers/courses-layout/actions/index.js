@@ -6,6 +6,7 @@ import {
   TYPE_SUCCESS_FETCH_COURSES,
   TYPE_ERROR_FETCH_COURSES,
   TYPE_DETAILS_COURSE,
+  TYPE_CHANGE_INPUT,
 } from './types';
 
 import { getAllCourses } from '../services';
@@ -39,6 +40,11 @@ export const fetchCourses = () => (dispatch) => {
 export const selectCourse = (payload) => ({
   type: TYPE_DETAILS_COURSE,
   payload,
+});
+
+export const changeInput = (name, value) => ({
+  type: TYPE_CHANGE_INPUT,
+  payload: { name, value },
 });
 
 export * from './types';
