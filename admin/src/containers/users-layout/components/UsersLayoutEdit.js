@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -5,7 +6,8 @@ import styled from 'styled-components';
 import { ArrowLeft } from 'react-feather';
 import { changeInput } from '../actions';
 import { pallette } from '../../../constants';
-import { InputText, Button } from '../../../components';
+import { InputText, Button, Dropdown } from '../../../components';
+import RolesDropdown from '../../../core/SelectRole';
 
 const Container = styled.div`
   height: 100%;
@@ -85,6 +87,7 @@ const UserLayoutEdit = ({ user, back }) => {
     nombre: users.form.nombre,
     apellido: users.form.apellido,
   }));
+
   const handleInputChange = (name, value) => {
     dispatch(changeInput(name, value));
   };
@@ -122,6 +125,7 @@ const UserLayoutEdit = ({ user, back }) => {
                 placeholder="Email"
                 value={email}
               />
+              <RolesDropdown />
             </FormContent>
             <FormActions>
               <Button width="100%" text="Editar usuario" />
