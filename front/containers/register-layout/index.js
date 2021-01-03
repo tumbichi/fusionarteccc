@@ -3,17 +3,23 @@ import { registerUser } from '../../services';
 import { FlexContainer as Container, FormContainer, FlexRowContainer as FlexRow } from '../../layouts';
 import InputText from '../../components/InputText';
 import Button from '../../components/Button';
+import { getMessageError, isEmailError, isPasswordError } from '../../utils';
+import AlertWarningLabel from '../../components/Labels/AlertWarningLabel';
 
-const RegisterLayout = () => {
+// eslint-disable-next-line react/prop-types
+const RegisterLayout = ({ goToHome }) => {
   const [email, setEmail] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
   const [password2, setPassword2] = useState({ value: '', error: '' });
   const [nombre, setNombre] = useState({ value: '', error: '' });
   const [apellido, setApellido] = useState({ value: '', error: '' });
   const [fechaNacimiento, setFechaNacimiento] = useState({ value: '', error: '' });
+  const [serviceError, setServiceError] = useState('');
+
   const handleInputTextChange = useCallback(
     ({ target }) => {
       const { name, value } = target;
+      setServiceError('');
       // eslint-disable-next-line default-case
       switch (name) {
         case 'email':
@@ -124,24 +130,39 @@ const RegisterLayout = () => {
     return isAnError;
   };
 
+  const handleErrorsAuth = (errorCode) => {
+    if (isEmailError(errorCode)) {
+      setEmail((prevState) => {
+        return { ...prevState, error: getMessageError(errorCode) };
+      });
+    }
+    if (isPasswordError(errorCode)) {
+      setPassword((prevState) => {
+        return { ...prevState, error: getMessageError(errorCode) };
+      });
+    }
+    if (!isEmailError(errorCode) && !isPasswordError(errorCode)) {
+      setServiceError(getMessageError(errorCode));
+    }
+  };
+
   const handleRegister = useCallback(() => {
-    /*
-    console.log('email', email);
-    console.log('password', password);
-    console.log('password2', password2);
-    console.log('nombre', nombre);
-    console.log('apellido', apellido);
-    console.log('fechaNacimiento', fechaNacimiento);
-   */
     const thereIsAnError = handleErrors({ email, password, password2, nombre, apellido, fechaNacimiento });
-    if (thereIsAnError) {
-      console.log(thereIsAnError);
-    } else {
-      registerUser({ email, password, password2, nombre, apellido, fechaNacimiento })
+    if (!thereIsAnError) {
+      registerUser({
+        email: email.value,
+        password: password.value,
+        password2: password2.value,
+        nombre: nombre.value,
+        apellido: apellido.value,
+        fechaNacimiento: fechaNacimiento.value,
+      })
         .then((user) => {
           console.log('Usuario creado', user);
+          goToHome();
         })
         .catch((error) => {
+          handleErrorsAuth(error.code);
           console.log('Error register user', error);
         });
     }
@@ -150,6 +171,7 @@ const RegisterLayout = () => {
   return (
     <Container>
       <FormContainer>
+        <AlertWarningLabel show={serviceError !== ''} message={serviceError} />
         <FlexRow>
           <InputText
             name="nombre"
@@ -168,7 +190,6 @@ const RegisterLayout = () => {
             containerStyle="mx-4"
           />
         </FlexRow>
-        {console.log('ERROR EMAIL', email.error)}
         <InputText
           type="email"
           name="email"

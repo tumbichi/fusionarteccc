@@ -5,6 +5,10 @@ export const AUTH_ERRORS = [
     message: 'El email ya existe',
   },
   {
+    code: 'auth/email-already-in-use',
+    message: 'Otro usuario ya está utilizando ese email',
+  },
+  {
     code: 'auth/insufficient-permission',
     message: 'Usted no tiene permisos para acceder',
   },
