@@ -5,7 +5,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CourseStatus } from './models/status';
-import { fetchCourses, selectCourse } from './actions';
+import { fetchCourses, selectCourse, changeInput } from './actions';
 import {
   CoursesLayoutLoading,
   CoursesLayoutSuccess,
@@ -16,9 +16,10 @@ import {
 
 const CoursesLayout = () => {
   const dispatch = useDispatch();
-  const { status, data } = useSelector(({ courses }) => ({
+  const { selectedCourse, status, data } = useSelector(({ courses }) => ({
     status: courses.status,
     data: courses.data,
+    selectedCourse: courses.selected,
   }));
 
   useEffect(() => {
@@ -30,6 +31,9 @@ const CoursesLayout = () => {
   };
   const handleDetailsCourse = (course) => {};
   const handleDeleteCourse = (course) => {};
+  const handleInputChange = (name, value) => {
+    dispatch(changeInput(name, value));
+  };
 
   switch (status) {
     case CourseStatus.LOADING:
@@ -49,7 +53,12 @@ const CoursesLayout = () => {
     case CourseStatus.FAILURE:
       return <CoursesLayoutFailure />;
     case CourseStatus.EDIT:
-      return <CoursesLayoutEdit />;
+      return (
+        <CoursesLayoutEdit
+          course={selectedCourse}
+          onChangeInput={handleInputChange}
+        />
+      );
     case CourseStatus.DETAILS:
       return <CoursesLayoutDetails />;
     default:

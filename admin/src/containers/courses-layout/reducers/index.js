@@ -7,6 +7,7 @@ import {
   TYPE_LOADING_FETCH_COURSES,
   TYPE_SUCCESS_FETCH_COURSES,
   TYPE_DETAILS_COURSE,
+  TYPE_EDIT_COURSE,
 } from '../actions';
 
 const initialState = {
@@ -37,6 +38,12 @@ const reducer = (state = initialState, { type, payload }) => {
         error: payload,
       };
     case TYPE_DETAILS_COURSE:
+      return {
+        ...state,
+        status: payload.status,
+        select: payload.course,
+      };
+    case TYPE_EDIT_COURSE:
       return {
         ...state,
         status: payload.status,
