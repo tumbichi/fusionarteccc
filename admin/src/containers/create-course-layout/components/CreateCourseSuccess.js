@@ -1,7 +1,7 @@
 import React from 'react';
 import InputText from '../../../components/InputText/index';
 
-const CreateCourseSuccess = (onChangeInput) => {
+const CreateCourseSuccess = (onChangeInput, formData) => {
   return (
     <div>
       <div>Crear curso</div>
@@ -10,34 +10,29 @@ const CreateCourseSuccess = (onChangeInput) => {
         name="tituloCurso"
         placeholder="Titulo"
         onChange={onChangeInput}
+        value={formData.titulo}
       />
       <InputText
         width="100%"
         name="descripcion"
         placeholder="Descripcion"
         onChange={onChangeInput}
+        value={formData.descripcion}
       />
-      <select>
-        <option>cateogria 1</option>
-        <option>cateogria 2</option>
-      </select>
       <InputText
         width="100%"
         name="descripcion"
         placeholder="Precio"
         onChange={onChangeInput}
+        value={formData.precio}
       />
-      <select>
-        <option>profesor 1</option>
-        <option>profesor 2</option>
-      </select>
-      <InputText
+      {/*   <InputText
         width="100%"
         name="imagen"
         placeholder="Imagen"
         type="file"
         onChange={onChangeInput}
-      />
+      /> */}
     </div>
   );
 };

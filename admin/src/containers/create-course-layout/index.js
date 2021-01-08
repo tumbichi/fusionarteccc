@@ -15,17 +15,28 @@ import { changeInput } from './actions';
 
 const CreateCourseLayout = () => {
   const dispatch = useDispatch();
-  /*  const { status, data } = useSelector(({ courses }) => {}); */
+  const { status, data, formData } = useSelector((state) => {
+    return {
+      status: state.courses.status,
+      data: state.courses.data,
+      formData: state.courses.form,
+    };
+  });
 
   const handleInputChange = (name, value) => {
     dispatch(changeInput(name, value));
   };
 
-  switch (/* status */ CreateCourseStatus.SUCCESS) {
+  switch (status) {
     case CreateCourseStatus.LOADING:
       return <CreateCoursesLoading />;
     case CreateCourseStatus.SUCCESS:
-      return <CreateCourseSuccess onChangeInput={handleInputChange} />;
+      return (
+        <CreateCourseSuccess
+          onChangeInput={handleInputChange}
+          formData={formData}
+        />
+      );
     case CreateCourseStatus.FAILURE:
       return <CreateCoursesFailure />;
     default:
