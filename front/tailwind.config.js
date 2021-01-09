@@ -29,6 +29,7 @@ module.exports = {
       colors: {
         primary: '#3B937B',
         secondary: '#fafafa',
+        tertiary: '#d8e3e7',
         acent: '#238D70',
         link: '#335eea',
         linkHover: '#332eea',
