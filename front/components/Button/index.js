@@ -19,6 +19,12 @@ const Button = ({ text, color, onClick, leftIcon, width, type }) => {
     letters = 'text-secondary';
     lettersHover = 'hover:text-secondary';
   }
+  if (color === 'tertiary') {
+    bg = 'bg-tertiary';
+    bgHover = 'hover:bg-primary';
+    letters = 'text-primary';
+    lettersHover = 'hover:text-secondary';
+  }
   return (
     <button
       className={` flex items-center justify-center px-2 py-3 text-sm md:text-lg
