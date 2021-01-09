@@ -1,19 +1,20 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-fallthrough */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/react-in-jsx-scope */
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Link from 'next/link';
 import Button from '../../components/Button';
 import InputText from '../../components/InputText';
 import AlertWarningLabel from '../../components/Labels/AlertWarningLabel';
+import { useRouter } from 'next/router';
 /* import { login } from '../../services/auth'; */
 import { requestLogin, setErrorLogin } from '../../store/actions';
 import { getMessageError, isEmailError, isPasswordError } from '../../utils';
 
 // eslint-disable-next-line no-unused-vars
-const LoginLayout = ({ goToHome }) => {
+const LoginLayout = ({ goToMisCursos }) => {
   const dispatch = useDispatch();
   const [inputEmail, setEmail] = useState('');
   const [inputPassword, setPassword] = useState('');
@@ -22,6 +23,7 @@ const LoginLayout = ({ goToHome }) => {
   const { loginError, user } = useSelector(({ auth }) => {
     return { loginError: auth.loginError, user: auth.user };
   });
+  const router = useRouter();
 
   useEffect(() => {
     if (loginError) {
@@ -33,9 +35,13 @@ const LoginLayout = ({ goToHome }) => {
 
   useEffect(() => {
     if (user) {
-      goToHome();
+      goToMisCursos();
     }
-  }, [user]);
+  }, []);
+
+  const goToRegister = () => {
+    router.push(`/auth/register`);
+  };
 
   // eslint-disable-next-line no-shadow
   /*   const handleErrors = ({ inputEmail, inputPassword }) => {
@@ -114,7 +120,7 @@ const LoginLayout = ({ goToHome }) => {
           show={loginError && !isEmailError(loginError.code) && !isPasswordError(loginError.code)}
           message={loginError ? getMessageError(loginError.code) : null}
         />
-        <h1 className="text-3xl text-primary font-extrabold">Fusionarte</h1>
+        <h1 className="text-4xl text-primary font-extrabold">Fusionarte</h1>
         <InputText
           type="email"
           name="email"
@@ -136,11 +142,13 @@ const LoginLayout = ({ goToHome }) => {
           errorText={loginError ? handleError('password') : null}
         />
         <Button text="Iniciar sesion" color="secondary" type="submit" width="w-full" />
-        <div className="flex justify-center items-center">
-          <Link href="/auth/register" >
-            <a className="link-label">No tenes cuenta? ¡Registrate!</a>
-          </Link>
-        </div>
+        <Button
+          text="No tenes cuenta? ¡Registrate!"
+          color="tertiary"
+          type="button"
+          onClick={goToRegister}
+          width="w-full"
+        />
       </form>
     </div>
   );
