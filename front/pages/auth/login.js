@@ -1,16 +1,18 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import LoginContainer from '../../containers/login-layout';
+import ToolbarLayout from '../../containers/toolbar-layout';
 
 const LoginPage = () => {
   const router = useRouter();
 
-  const goToHome = () => {
-    router.push(`/`);
+  const goToMisCursos = () => {
+    router.push(`/mis-cursos`);
   };
   return (
     <>
-      <LoginContainer goToHome={goToHome} />
+      <ToolbarLayout />
+      <LoginContainer goToMisCursos={goToMisCursos} />
     </>
   );
 };
