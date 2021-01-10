@@ -123,11 +123,21 @@ const RegisterLayout = ({ goToLogin }) => {
       });
       isAnError = isAnError || true;
     }
-    if (!fechaNacimiento.value /* datejs */) {
+    if (!fechaNacimiento.value){
       setFechaNacimiento((prevState) => {
         return { ...prevState, error: 'Ingrese fecha de nacimiento valida' };
       });
       isAnError = isAnError || true;
+    }
+    if (fechaNacimiento.value) {
+      const currentYear = new Date().getFullYear();
+      const yearBirth = fechaNacimiento.value.split('-');
+      if (currentYear - yearBirth[0] < 3) {
+        setFechaNacimiento((prevState) => {
+          return { ...prevState, error: 'Ingrese fecha de nacimiento valida' };
+        });
+        isAnError = isAnError || true;
+      }
     }
     return isAnError;
   };
@@ -149,7 +159,6 @@ const RegisterLayout = ({ goToLogin }) => {
   };
 
   const handleRegister = useCallback(() => {
-    console.log (DEFAULT_PROFILE_IMAGE);
     const thereIsAnError = handleErrors({ email, password, password2, nombre, apellido, fechaNacimiento });
     if (!thereIsAnError) {
       registerUser({
