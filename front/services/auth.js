@@ -18,7 +18,7 @@ export const registerUser = async (user) => {
   } catch (error) {
     throw error;
   }
-
+  userCreatedAuth.user.sendEmailVerification();
   if (userCreatedAuth.user.uid) {
     // eslint-disable-next-line no-useless-catch
     try {
@@ -30,3 +30,15 @@ export const registerUser = async (user) => {
 
   throw new Error({ code: 'ErrorInesperado', message: 'Ha ocurrido un error inesperado' });
 };
+
+// export const sendEmailNotification = async () => {
+//   let response;
+//   if (auth.currentUser) {
+//     try {
+//       response = await auth.currentUser.sendEmailNotification();
+//     } catch (error) {
+//       return Promise.reject(error);
+//     }
+//   }
+//   return Promise.resolve(response);
+// };
