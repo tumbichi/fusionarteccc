@@ -1,6 +1,14 @@
 @tailwind base;
 @tailwind components;
 
+.height-toolbar {
+  height: calc(100% - 3em);
+}
+
+#__next {
+  height: 100vh;
+}
+
 .input-form {
   @apply block px-6 h-14  border-b-4 rounded-md focus:outline-none bg-transparent bg-secondary focus:outline-none focus:border-primary border-b-4;
 }
@@ -21,11 +29,10 @@ input:not(:placeholder-shown) ~ label {
 }
 
 .link-label {
-  @apply text-sm text-link  hover:underline hover:text-linkHover;
+  @apply text-sm text-link  hover:underline hover:text-linkHover focus:outline-none;
 }
 .gray-sm-text {
   @apply text-black opacity-80 text-xs;
 }
-
 
 @tailwind utilities;

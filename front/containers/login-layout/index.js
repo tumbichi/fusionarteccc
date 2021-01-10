@@ -12,7 +12,6 @@ import AlertWarningLabel from '../../components/Labels/AlertWarningLabel';
 /* import { login } from '../../services/auth'; */
 import { requestLogin, setErrorLogin } from '../../store/actions';
 import { getMessageError, isEmailError, isPasswordError } from '../../utils';
-
 // eslint-disable-next-line no-unused-vars
 const LoginLayout = ({ goToMisCursos }) => {
   const dispatch = useDispatch();
@@ -41,6 +40,9 @@ const LoginLayout = ({ goToMisCursos }) => {
 
   const goToRegister = () => {
     router.push(`/auth/register`);
+  };
+  const goToForgotPassword = () => {
+    router.push(`/auth/forgot-password`);
   };
 
   // eslint-disable-next-line no-shadow
@@ -110,7 +112,7 @@ const LoginLayout = ({ goToMisCursos }) => {
   };
 
   return (
-    <div className=" bg-withe flex flex-col justify-center items-center w-screen h-screen">
+    <div className=" bg-withe flex flex-col justify-center items-center w-screen height-toolbar">
       <form
         className=" bg-secondary shadow-2xl rounded-lg space-y-3 flex flex-col items-center  p-6 w-full lg:w-3/6 lg:px-10"
         onSubmit={handleLogin}
@@ -141,6 +143,13 @@ const LoginLayout = ({ goToMisCursos }) => {
           containerStyle="w-full"
           errorText={loginError ? handleError('password') : null}
         />
+        <button
+          onClick={goToForgotPassword}
+          type="button"
+          className="text-primary text-sm text-left w-full focus:outline-none"
+        >
+          Olvidé mi contraseña
+        </button>
         <Button text="Iniciar sesion" color="secondary" type="submit" width="w-full" />
         <Button
           text="No tenes cuenta? ¡Registrate!"
