@@ -6,6 +6,7 @@ import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 import { getMessageError, isEmailError, isPasswordError } from '../../utils';
 import AlertWarningLabel from '../../components/Labels/AlertWarningLabel';
+import { DEFAULT_PROFILE_IMAGE } from '../../constants';
 
 // eslint-disable-next-line react/prop-types
 const RegisterLayout = ({ goToLogin }) => {
@@ -148,6 +149,7 @@ const RegisterLayout = ({ goToLogin }) => {
   };
 
   const handleRegister = useCallback(() => {
+    console.log (DEFAULT_PROFILE_IMAGE);
     const thereIsAnError = handleErrors({ email, password, password2, nombre, apellido, fechaNacimiento });
     if (!thereIsAnError) {
       registerUser({
@@ -157,6 +159,7 @@ const RegisterLayout = ({ goToLogin }) => {
         nombre: nombre.value,
         apellido: apellido.value,
         fechaNacimiento: fechaNacimiento.value,
+        profileImageUrl: DEFAULT_PROFILE_IMAGE,
       })
         .then((user) => {
           console.log('Usuario creado', user);
