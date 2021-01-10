@@ -6,22 +6,13 @@ import thunk from 'redux-thunk';
 import usersReducer from '../containers/users-layout/reducers';
 import coursesReducer from '../containers/courses-layout/reducers';
 import rolesReducer from '../core/SelectRole/reducer';
-/* const persistConfig = {
-  key: 'root',
-  storage,
-  blacklist: [],
-};
- */
+import createCourseReducer from '../containers/create-course-layout';
+
 const reducers = combineReducers({
   users: usersReducer,
   courses: coursesReducer,
   roles: rolesReducer,
+  createCourse: createCourseReducer,
 });
 
 export default createStore(reducers, applyMiddleware(thunk));
-
-/* export default () => {
-  const store = );
-  return { store };
-};
- */

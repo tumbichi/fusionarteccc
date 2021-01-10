@@ -6,6 +6,7 @@ import {
   TYPE_LOADING_CREATE_COURSE,
   TYPE_SUCCESS_CREATE_COURSE,
   TYPE_FAILURE_CREATE_COURSE,
+  TYPE_CREATE_NEW_COURSE,
 } from './types';
 
 export const setLoading = () => ({
@@ -14,16 +15,22 @@ export const setLoading = () => ({
 
 export const setError = (error) => ({
   type: TYPE_FAILURE_CREATE_COURSE,
-  error,
+  payload: error,
 });
 
-export const createCourse = (payload) => ({
+export const createCourse = () => ({
   type: TYPE_SUCCESS_CREATE_COURSE,
-  payload,
 });
 
 export const changeInput = (name, value) => ({
   type: TYPE_CHANGE_INPUT,
   payload: { name, value },
 });
+
+export const createNewCourse = () => {
+  return {
+    type: TYPE_CREATE_NEW_COURSE,
+  };
+};
+
 export * from './types';

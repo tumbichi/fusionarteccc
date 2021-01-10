@@ -1,40 +1,7 @@
 import React from 'react';
-import InputText from '../../../components/InputText/index';
 
-const CreateCourseSuccess = (onChangeInput, formData) => {
-  return (
-    <div>
-      <div>Crear curso</div>
-      <InputText
-        width="100%"
-        name="tituloCurso"
-        placeholder="Titulo"
-        onChange={onChangeInput}
-        value={formData.titulo}
-      />
-      <InputText
-        width="100%"
-        name="descripcion"
-        placeholder="Descripcion"
-        onChange={onChangeInput}
-        value={formData.descripcion}
-      />
-      <InputText
-        width="100%"
-        name="descripcion"
-        placeholder="Precio"
-        onChange={onChangeInput}
-        value={formData.precio}
-      />
-      {/*   <InputText
-        width="100%"
-        name="imagen"
-        placeholder="Imagen"
-        type="file"
-        onChange={onChangeInput}
-      /> */}
-    </div>
-  );
+const CreateCourseSuccess = () => {
+  return <div>Creado con exito (en modal o ahi noma)</div>;
 };
 
 export default CreateCourseSuccess;
