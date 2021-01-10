@@ -5,15 +5,21 @@ import {
   TYPE_LOADING_CREATE_COURSE,
   TYPE_SUCCESS_CREATE_COURSE,
   TYPE_FAILURE_CREATE_COURSE,
+  TYPE_CREATE_NEW_COURSE,
   TYPE_CHANGE_INPUT,
 } from '../actions';
 
 const initialState = {
-  data: [],
-  status: CreateCourseStatus.LOADING,
+  status: CreateCourseStatus.CREATE,
+  form: {
+    title: '',
+    duration: '',
+    price: 0.0,
+    image: null,
+    categoria: null,
+    lessons: [],
+  },
   error: null,
-  selected: null,
-  form: null,
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -27,12 +33,24 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         status: CreateCourseStatus.SUCCESS,
-        payload,
       };
     case TYPE_FAILURE_CREATE_COURSE:
       return {
         ...state,
         status: CreateCourseStatus.FAILURE,
+      };
+    case TYPE_CREATE_NEW_COURSE:
+      return {
+        ...state,
+        status: CreateCourseStatus.CREATE,
+        form: {
+          title: '',
+          duration: '',
+          price: 0.0,
+          image: null,
+          categoria: null,
+          lessons: [],
+        },
       };
     case TYPE_CHANGE_INPUT:
       return {
