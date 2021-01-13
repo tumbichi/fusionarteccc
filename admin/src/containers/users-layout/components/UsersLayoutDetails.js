@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 
@@ -10,6 +11,7 @@ const UserLayoutDetails = ({ requestRoles, user, roles, back }) => {
     }
   });
 
+  console.log(user);
   return (
     <>
       <button type="button" onClick={back}>
@@ -27,7 +29,8 @@ const UserLayoutDetails = ({ requestRoles, user, roles, back }) => {
       ) : (
         <p>rol: {roles.find((rol) => user.rolId === rol.id).descripcion}</p>
       )}
-      <p>Cursos: Vacio :0 </p>
+      <p>Cursos: Vacio </p>
+      <img src={user.profileImageUrl} />
     </>
   );
 };

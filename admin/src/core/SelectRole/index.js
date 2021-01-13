@@ -5,7 +5,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Dropdown from '../../components/Dropdown';
-import { fetchRoles, selectRole } from './actions';
+import { fetchRoles } from './actions';
 import { RoleStatus } from './reducer';
 
 const SelectRole = ({ name, onChange, value }) => {

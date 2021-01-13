@@ -11,15 +11,17 @@ import {
 
 const initialState = {
   status: CreateCourseStatus.CREATE,
+  error: null,
   form: {
     title: '',
+    description: '',
     duration: '',
     price: 0.0,
     image: null,
-    categoria: null,
+    categoryId: null,
+    professor: 1,
     lessons: [],
   },
-  error: null,
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -38,6 +40,7 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         status: CreateCourseStatus.FAILURE,
+        error: payload,
       };
     case TYPE_CREATE_NEW_COURSE:
       return {
@@ -45,6 +48,7 @@ const reducer = (state = initialState, { type, payload }) => {
         status: CreateCourseStatus.CREATE,
         form: {
           title: '',
+          description: '',
           duration: '',
           price: 0.0,
           image: null,
