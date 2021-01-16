@@ -2,7 +2,7 @@ import { parseSnapshotToArray } from '../utils/firebase-helper';
 import { db } from './firebase';
 
 // eslint-disable-next-line import/prefer-default-export
-export const saveUser = async ({ id, email, nombre, apellido, fechaNacimiento }) => {
+export const saveUser = async ({ id, email, nombre, apellido, fechaNacimiento, profileImageUrl }) => {
   let response;
   let fechaCreacion;
   let rolId;
@@ -21,6 +21,7 @@ export const saveUser = async ({ id, email, nombre, apellido, fechaNacimiento })
         apellido,
         fechaNacimiento,
         fechaCreacion: new Date().toISOString(),
+        profileImageUrl,
         rolId: ID_ROL_ALUMNOS,
       },
       (error) => {
@@ -40,6 +41,7 @@ export const saveUser = async ({ id, email, nombre, apellido, fechaNacimiento })
       apellido,
       fechaNacimiento,
       fechaCreacion,
+      profileImageUrl,
       rolId,
     };
   }

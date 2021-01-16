@@ -5,6 +5,7 @@ import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 import { getMessageError, isEmailError, isPasswordError } from '../../utils';
 import AlertWarningLabel from '../../components/Labels/AlertWarningLabel';
+import { DEFAULT_PROFILE_IMAGE } from '../../constants';
 
 // eslint-disable-next-line react/prop-types
 const RegisterLayout = ({ goToLogin }) => {
@@ -121,11 +122,21 @@ const RegisterLayout = ({ goToLogin }) => {
       });
       isAnError = isAnError || true;
     }
-    if (!fechaNacimiento.value /* datejs */) {
+    if (!fechaNacimiento.value){
       setFechaNacimiento((prevState) => {
         return { ...prevState, error: 'Ingrese fecha de nacimiento valida' };
       });
       isAnError = isAnError || true;
+    }
+    if (fechaNacimiento.value) {
+      const currentYear = new Date().getFullYear();
+      const yearBirth = fechaNacimiento.value.split('-');
+      if (currentYear - yearBirth[0] < 3) {
+        setFechaNacimiento((prevState) => {
+          return { ...prevState, error: 'Ingrese fecha de nacimiento valida' };
+        });
+        isAnError = isAnError || true;
+      }
     }
     return isAnError;
   };
@@ -156,6 +167,7 @@ const RegisterLayout = ({ goToLogin }) => {
         nombre: nombre.value,
         apellido: apellido.value,
         fechaNacimiento: fechaNacimiento.value,
+        profileImageUrl: DEFAULT_PROFILE_IMAGE,
       })
         .then((user) => {
           console.log('Usuario creado', user);
