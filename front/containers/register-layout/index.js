@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react';
 import { registerUser } from '../../services';
-import { FlexContainer as Container, FormContainer, FlexRowContainer as FlexRow } from '../../layouts';
 import InputText from '../../components/InputText';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
@@ -169,10 +168,10 @@ const RegisterLayout = ({ goToLogin }) => {
     }
   }, [email, password, password2, nombre, apellido, fechaNacimiento]);
   return (
-    <Container>
-      <FormContainer>
+    <div className="bg-withe flex flex-col justify-center items-center height-toolbar">
+      <div className=" bg-secondary shadow-2xl rounded-lg space-y-3 flex flex-col p-6 w-full lg:w-3/6 lg:px-10">
         <AlertWarningLabel show={serviceError !== ''} message={serviceError} />
-        <FlexRow>
+        <div className="flex w-full">
           <InputText
             name="nombre"
             placeholder="Nombre"
@@ -189,7 +188,7 @@ const RegisterLayout = ({ goToLogin }) => {
             errorText={apellido.error}
             containerStyle="mx-4"
           />
-        </FlexRow>
+        </div>
         <InputText
           type="email"
           name="email"
@@ -199,7 +198,7 @@ const RegisterLayout = ({ goToLogin }) => {
           errorText={email.error}
           containerStyle="mx-4"
         />
-        <FlexRow>
+        <div className="flex w-full">
           <InputText
             type="password"
             name="password"
@@ -218,7 +217,7 @@ const RegisterLayout = ({ goToLogin }) => {
             errorText={password2.error}
             containerStyle="mx-4"
           />
-        </FlexRow>
+        </div>
         <InputText
           type="date"
           name="fechaNacimiento"
@@ -229,7 +228,7 @@ const RegisterLayout = ({ goToLogin }) => {
           containerStyle="mx-4"
         />
         <Button text="Registrate" color="secondary" onClick={handleRegister} />
-      </FormContainer>
+      </div>
       <Modal width="w-125" show={modalState} onClose={() => setModalState(false)}>
         <div className="flex flex-col items-center justify-center w-full space-y-6">
           <h1 className="text-center text-grray-760 pb-3 pt-1 font-semibold">
@@ -239,7 +238,7 @@ const RegisterLayout = ({ goToLogin }) => {
           <Button text="Iniciar sesión" width="w-full" className="" type="button" onClick={goToLogin} />
         </div>
       </Modal>
-    </Container>
+    </div>
   );
 };
 export default RegisterLayout;

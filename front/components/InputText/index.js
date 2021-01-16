@@ -68,5 +68,5 @@ InputText.propTypes = {
   errorBorderClass: PropTypes.string,
   containerStyle: PropTypes.string,
 };
- 
+
 export default InputText;

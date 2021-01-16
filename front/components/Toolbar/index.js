@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Toolbar = ({ right, goToHome }) => {
   return (
-    <div className="bg-primary flex justify-between items-center h-12 md:h-16 lg:h-20 w-full">
+    <div className="bg-primary flex justify-between items-center h-12 w-full">
       <button onClick={goToHome} type="button" className="focus:outline-none">
         <img
           alt="logo fusionartel"
