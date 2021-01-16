@@ -1,24 +1,23 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
+/* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Dropdown from '../../components/Dropdown';
-import { fetchRoles } from './actions';
-import { RoleStatus } from './reducer';
+import { fetchCategories } from './actions';
+import { CategoryStatus } from './reducer';
 
-const SelectRole = ({ name, onChange, value }) => {
+const SelectCategory = ({ name, onChange, value }) => {
   const dispatch = useDispatch();
-  const { data, status } = useSelector(({ roles }) => ({
-    data: roles.data,
-    status: roles.status,
-    selectedRole: roles.selected,
+  const { data, status } = useSelector(({ categories }) => ({
+    data: categories.data,
+    status: categories.status,
+    selectedRole: categories.selected,
   }));
 
   useEffect(() => {
     if (data.length === 0) {
-      dispatch(fetchRoles());
+      dispatch(fetchCategories());
     }
   }, []);
 
@@ -30,8 +29,8 @@ const SelectRole = ({ name, onChange, value }) => {
   return (
     <Dropdown
       name={name}
-      placeholder="Rol"
-      loading={status === RoleStatus.LOADING}
+      placeholder="Categoria"
+      loading={status === CategoryStatus.LOADING}
       options={options}
       value={options.find((option) => option.value === value)}
       onChange={onChange}
@@ -39,4 +38,4 @@ const SelectRole = ({ name, onChange, value }) => {
   );
 };
 
-export default SelectRole;
+export default SelectCategory;

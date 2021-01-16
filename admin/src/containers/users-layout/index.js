@@ -24,7 +24,6 @@ const UsersLayout = () => {
   const dispatch = useDispatch();
   const { status, data, selectedUser, roles, formData, saving } = useSelector(
     (state) => {
-      console.log(state);
       return {
         status: state.users.status,
         data: state.users.data,

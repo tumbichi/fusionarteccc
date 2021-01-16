@@ -27,10 +27,8 @@ export const changeInput = (name, value) => ({
   payload: { name, value },
 });
 
-export const createNewCourse = () => {
-  return {
-    type: TYPE_CREATE_NEW_COURSE,
-  };
-};
+export const createNewCourse = () => ({
+  type: TYPE_CREATE_NEW_COURSE,
+});
 
 export * from './types';

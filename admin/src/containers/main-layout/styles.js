@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export const ContentWrapper = styled.div`
   height: calc(100% - 40px);
-  width: ${({ open }) => (open ? 'calc(100% - 190px)' : 'calc(100% - 64px)')};
+  width: ${({ open }) => (open ? 'calc(100% - 190px)' : 'calc(100% - 88px)')};
   padding: 12px;
 `;
 
