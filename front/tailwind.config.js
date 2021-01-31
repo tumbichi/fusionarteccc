@@ -3,9 +3,6 @@ module.exports = {
   purge: ['./**/*.js'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    letterSpacing: {
-      widy: '.08em',
-    },
     fontSize: {
       xxs: '.75rem',
       xs: '.87rem',
