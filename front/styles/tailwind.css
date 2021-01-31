@@ -10,7 +10,7 @@
 }
 
 .input-form {
-  @apply block px-6 h-14  border-b-4 rounded-md focus:outline-none bg-transparent bg-secondary focus:outline-none focus:border-primary border-b-4;
+  @apply block px-6 h-14  border-b-4 rounded-md focus:outline-none bg-transparent bg-secondary focus:border-primary;
 }
 .input-label {
   @apply absolute left-6 top-2.5 duration-200 text-gray-400 focus:placeholder-primary;
