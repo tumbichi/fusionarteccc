@@ -17,7 +17,7 @@ const LoginLayout = ({ goToMisCursos }) => {
   const dispatch = useDispatch();
   const [inputEmail, setEmail] = useState('');
   const [inputPassword, setPassword] = useState('');
-  /*   const [passwordError, setPasswordError] = useState('');
+  /* const [passwordError, setPasswordError] = useState('');
   const [emailError, setEmailError] = useState(''); */
   const { loginError, user } = useSelector(({ auth }) => {
     return { loginError: auth.loginError, user: auth.user };
@@ -36,7 +36,7 @@ const LoginLayout = ({ goToMisCursos }) => {
     if (user) {
       goToMisCursos();
     }
-  }, []);
+  }, [user]);
 
   const goToRegister = () => {
     router.push(`/auth/register`);

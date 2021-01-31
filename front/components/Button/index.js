@@ -27,10 +27,10 @@ const Button = ({ text, color, onClick, leftIcon, width, type }) => {
   }
   return (
     <button
-      className={` flex items-center justify-center px-2 py-2
-       focus:shadow-2xl focus:outline-none 
+      className={`flex items-center justify-center px-4 py-2
+       focus:shadow-2xl focus:outline-none
        ${bgHover} ${bg} ${lettersHover} ${letters} ${width} 
-       rounded-lg  md:tracking-wide font-semibold `}
+       rounded-lg md:tracking-wide font-semibold `}
       onClick={onClick}
       // eslint-disable-next-line react/button-has-type
       type={type}

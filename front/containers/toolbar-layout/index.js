@@ -1,17 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import Toolbar from '../../components/Toolbar';
 import Keypad from '../../components/Keypad';
 import Button from '../../components/Button';
 
-const ToolbarLayout = () => {
+const ToolbarLayout = ({ isLogged }) => {
   const router = useRouter();
 
   const goToHome = () => {
     router.push(`/`);
   };
+
   const goToLogIn = () => {
     router.push(`/auth/login`);
+  };
+
+  const goMyCourses = () => {
+    router.push(`/mis-cursos`);
   };
 
   return (
@@ -20,7 +26,8 @@ const ToolbarLayout = () => {
       right={
         <Keypad>
           <Button text="HOME" onClick={goToHome} />
-          <Button text="INICIAR SESIÓN" onClick={goToLogIn} />
+          {!isLogged && <Button text="INICIAR SESIÓN" onClick={goToLogIn} />}
+          {isLogged && <Button text="MIS CURSOS" onClick={goMyCourses} />}
           <Button
             leftIcon={
               <svg
@@ -43,6 +50,13 @@ const ToolbarLayout = () => {
       }
     />
   );
+};
+ToolbarLayout.defaultProps = {
+  isLogged: false,
+};
+
+ToolbarLayout.propTypes = {
+  isLogged: PropTypes.bool,
 };
 
 export default ToolbarLayout;
