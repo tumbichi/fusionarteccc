@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-const-assign */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/named */
