@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-return */
 /* eslint-disable no-console */
 /* eslint-disable no-const-assign */
 /* eslint-disable no-unused-vars */
@@ -29,13 +30,13 @@ const CreateCourseLayout = (props) => {
   };
 
   const handleDropdownChange = ({ value }, { name }) => {
-    console.log(value, name);
+    // console.log(value, name);
     dispatch(changeInput(name, value));
   };
 
   const handleAddFile = ({ target }) => {
     const file = target.files[0];
-    console.log('queonda', file);
+    // console.log('queonda', file);
     /* const { image } = formData; */
 
     /*     if (!file) return;
@@ -52,36 +53,36 @@ const CreateCourseLayout = (props) => {
 
   const handleSubmit = () => {
     if (!formData.title) {
-      console.log('no existe title');
+      // console.log('no existe title');
       return;
     }
     if (!formData.description) {
-      console.log('no existe descripcion');
+      // console.log('no existe descripcion');
       return;
     }
     if (!formData.image) {
-      console.log('no existe image');
+      // console.log('no existe image');
       return;
     }
     if (!formData.price) {
-      console.log('no existe price');
+      // console.log('no existe price');
       return;
     }
     if (typeof formData.categoryId !== 'number') {
-      console.log('no existe category id', formData.categoryId);
+      // console.log('no existe category id', formData.categoryId);
       return;
     }
     if (!formData.professor) {
-      console.log('no existe profesor');
+      // console.log('no existe profesor');
       return;
     }
 
     if (formData.lessons.length === 0) {
-      console.log('no existen lecciones');
+      // console.log('no existen lecciones');
       return;
     }
 
-    console.log('Succefull!', formData);
+    // console.log('Succefull!', formData);
   };
   // formData={formData}
   switch (status) {

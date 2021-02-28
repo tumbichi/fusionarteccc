@@ -69,7 +69,7 @@ const CoursesLayout = () => {
           loading={false}
           onClickCreate={handleToCreateCourse}
           onClickDelete={(row) => {
-            console.log(`delete user: ${row.id}`);
+            /* console.log(`delete user: ${row.id}`); */
           }}
           onClickEdit={handleEditCourse}
           onClickDetails={handleDetailsCourse}

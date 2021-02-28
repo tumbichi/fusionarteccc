@@ -11,7 +11,7 @@ const UserLayoutDetails = ({ requestRoles, user, roles, back }) => {
     }
   });
 
-  console.log(user);
+  // console.log(user);
   return (
     <>
       <button type="button" onClick={back}>

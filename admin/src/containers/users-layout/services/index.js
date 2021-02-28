@@ -12,7 +12,7 @@ export const fetchAllUsers = async () => {
 };
 
 export const submitUserUpdate = async (id, userData) => {
-  console.log('submitUserUpdate', id, userData);
+  // console.log('submitUserUpdate', id, userData);
   try {
     await db.ref().child('Usuarios').child(id).update({
       nombre: userData.nombre,

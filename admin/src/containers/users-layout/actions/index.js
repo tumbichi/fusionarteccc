@@ -55,12 +55,12 @@ export const requestEditUser = (id, userData) => (dispatch) => {
 
   submitUserUpdate(id, userData)
     .then(() => {
-      console.log('success update: ', userData);
+      // console.log('success update: ', userData);
       dispatch(setSaving(false));
       dispatch(updateUser(id, userData));
     })
-    .catch((error) => {
-      console.log('failure ', error);
+    .catch((/* error */) => {
+      // console.log('failure ', error);
       dispatch(setSaving(false));
     });
 };

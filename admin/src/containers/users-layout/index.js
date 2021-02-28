@@ -47,8 +47,8 @@ const UsersLayout = () => {
     dispatch(selectUser({ user, status: UserStatus.DETAILS }));
   };
 
-  const handleDeleteUser = (user) => {
-    console.log('deleteUser', user);
+  const handleDeleteUser = (/* user */) => {
+    // console.log('deleteUser', user);
   };
 
   const handleBackToDetails = () => {
