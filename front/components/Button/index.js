@@ -53,7 +53,7 @@ Button.defaultProps = {
 Button.propTypes = {
   width: PropTypes.string,
   text: PropTypes.string,
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
   type: PropTypes.string,
   leftIcon: PropTypes.node,
   onClick: PropTypes.func,
