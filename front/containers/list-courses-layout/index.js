@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { ImageContainer, LogoContainer, HeadContainer } from './styles';
 import CourseCard from '../../components/CourseCard';
@@ -6,8 +8,8 @@ const ListCoursesLayout = ({ category, goToCourse, bgImage }) => {
   const courses = ['Dibujo', 'Canto', 'Danza'];
 
   const courseList = () => {
-    return courses.map((nombre) => {
-      return <CourseCard name={nombre} goToCourse={goToCourse} />;
+    return courses.map((nombre, index) => {
+      return <CourseCard key={nombre + Math.random() * (index + 10)} name={nombre} goToCourse={goToCourse} />;
     });
   };
   const getContainer = () => {
@@ -27,7 +29,9 @@ const ListCoursesLayout = ({ category, goToCourse, bgImage }) => {
     <>
       <HeadContainer textColor={bgImage === 'jovenes' ? '#FAFAFA' : '#00947E'}>
         {(bgImage === 'jovenes' || bgImage === 'adultos') && <h1>{category}</h1>}
-        {(bgImage === 'jovenes' || bgImage === 'adultos') && <img src={`../static/images/${bgImage}.png`} />}
+        {(bgImage === 'jovenes' || bgImage === 'adultos') && (
+          <img alt="pattern of cources" src={`../static/images/${bgImage}.png`} />
+        )}
       </HeadContainer>
       <Container bgImage={bgImage}>{courseList()}</Container>
     </>
