@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const PageContainer = ({ children, containerStyle }) => {
-  return <div className={`height-toolbar p-12 ${containerStyle}`}>{children}</div>;
+  return <div className={`height-toolbar py-12 ${containerStyle}`}>{children}</div>;
 };
 
 PageContainer.defaultProps = {
@@ -11,7 +11,7 @@ PageContainer.defaultProps = {
 };
 
 PageContainer.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.node,
   containerStyle: PropTypes.string,
 };
 
