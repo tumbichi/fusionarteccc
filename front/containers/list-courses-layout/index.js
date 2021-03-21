@@ -149,11 +149,9 @@ const ListCoursesLayout = ({ category, goToCourse, bgImage }) => {
   const renderCourseListByCategory = (categoryIdToRender) => {
     const coursesByCategory = courses.filter(({ idCategoria }) => idCategoria === categoryIdToRender);
     const coursesBySubCategory = [];
-    for (let i = 0; i < subCategorias.length; i++) {
-      coursesBySubCategory.push(
-        coursesByCategory.filter(({ idSubCategoria }) => idSubCategoria === subCategorias[i].id)
-      );
-    }
+    subCategorias.forEach(({ id }) =>
+      coursesBySubCategory.push(coursesByCategory.filter(({ idSubCategoria }) => idSubCategoria === id))
+    );
     return coursesBySubCategory.map((values, index) => {
       return (
         <CourseCard key={`CourseCard$$${index}`} title={subCategorias[index].descripcion} goToCourse={goToCourse}>
