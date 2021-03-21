@@ -35,6 +35,4 @@ input:not(:placeholder-shown) ~ label {
   @apply text-black opacity-80 text-xs;
 }
 
-/* Containers  */
-
 @tailwind utilities;
