@@ -1,20 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {} from './styles';
-import Button from '../Button';
 
-const CourseCard = ({ name, goToCourse }) => {
-  return <Button text={name} onClick={() => goToCourse(name)} />;
+const CourseCard = ({ children, title, goToCourse }) => {
+  return (
+    <div className="bg-white shadow-2xl rounded-md opacity-80 text-center px-4">
+      <p className="font-bold capitalize text-2xl mb-2 text-primary border-b w-full py-2 border-gray-300">{title}</p>
+      <div className="h-40 w-52">
+        <button
+          className="flex flex-col items-center justify-center space-y-3 font-semibold px-8 mt-2 pb-4 text-center w-full h-full"
+          onClick={goToCourse}
+          type="button"
+        >
+          {children}
+        </button>
+      </div>
+    </div>
+  );
 };
-
-CourseCard.defaultProps = {
-  name: '',
-  goToCourse: () => {},
-};
-
-CourseCard.propTypes = {
-  name: PropTypes.string,
-  goToCourse: PropTypes.func,
-};
-
 export default CourseCard;

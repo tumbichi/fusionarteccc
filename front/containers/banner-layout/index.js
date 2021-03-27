@@ -1,13 +1,11 @@
 import React from 'react';
-import { FlexContainer as Container } from '../../layouts';
 import Banner from '../../components/Banner';
 
 const BannerLayout = () => {
   return (
-    <Container>
-      <div>banner container</div>
+    <div className="flex w-full h-full justify-center items-center">
       <Banner />
-    </Container>
+    </div>
   );
 };
 

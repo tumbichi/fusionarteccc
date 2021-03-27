@@ -50,11 +50,13 @@ export const saveUser = async ({ id, email, nombre, apellido, fechaNacimiento, p
 };
 
 export const suscribeToUser = async (callback) => {
-  db.ref().child('Usuarios').on('value', (snapshot) => {
-      if(snapshot){
+  db.ref()
+    .child('Usuarios')
+    .on('value', (snapshot) => {
+      if (snapshot) {
         const arr = parseSnapshotToArray(snapshot);
         console.log('arrUsuarios', arr);
-        callback(arr)
+        callback(arr);
       }
-  })
-}
+    });
+};

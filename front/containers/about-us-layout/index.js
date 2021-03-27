@@ -1,11 +1,11 @@
 import React from 'react';
 import { FlexContainer as Container } from '../../layouts';
-import AboutUs from '../../components/AboutUs'
+import AboutUs from '../../components/AboutUs';
 
 const AboutUsLayout = () => {
   return (
     <Container>
-      <AboutUs/>
+      <AboutUs />
     </Container>
   );
 };

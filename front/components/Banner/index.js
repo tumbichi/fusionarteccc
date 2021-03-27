@@ -3,15 +3,11 @@ import PropTypes from 'prop-types';
 import {} from './styles';
 
 const Banner = () => {
-  return <div>Banner</div>;
+  return <div className="text-4xl">Banner</div>;
 };
 
-Banner.defaultProps = {
+Banner.defaultProps = {};
 
-};
-
-Banner.propTypes = {
-
-};
+Banner.propTypes = {};
 
 export default Banner;
